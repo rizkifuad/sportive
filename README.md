@@ -26,7 +26,7 @@ $my_name = "name";
 $MY_NAME = "name";
 ```
 
-* Method, camel-case
+* Method, camel-case kecuali untuk method controller
 
 ```php
 function healTheWorld(){
