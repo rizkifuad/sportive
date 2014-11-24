@@ -12,6 +12,17 @@ class Booking_model extends CI_Model {
 	/**
 	 * get booking by id booking dan id_member
 	 */
+
+	/*
+		Token : itu digenerate random automatically
+		Type: Booking offline atau booking online
+		Status : 	0. Wes booking durung bayar
+					1. Wes booking bayar DP
+					2. Wes booking lunas
+
+	*/
+
+
 	public function getBooking($id_booking, $id_member){
 		$this->db->select('nama,telp,token, type,jadwal,jumlah_uang,status,id_lapangan');
 		$this->db->from('booking');
