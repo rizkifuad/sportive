@@ -11,21 +11,46 @@ class wilayah_model extends CI_Model {
 	 * dapatkan semua kota sesuai id provinsi
 	 */
 	public function getKotaByProvinsi($id_provinsi){
+		$this->db->select("id_kota, kota");
+		$this->db->from("kota k");
+		$this->db->join("provinsi p", "k.id_provinsi=p.id_provinsi");
+		$this->db->where("p.id_provinsi",$id_provinsi);
 
+		$query = $this->db->get();
+
+		if($query->num_rows() == 1){
+			return $query->result();
+		}
+
+		return false;
 	}
 
 	/**
 	 * dapatkan semua provinsi, atau jika $id_provinsi terset maka dapatkan hanya provinsi tertentu
 	 */
 	public function getProvinsi($id_provinsi=NULL){
+		$this->db->select("*");
+		$this->db->from("provinsi");
 
+		if($id_provinsi != NULL)
+			$this->db->where("id_provinsi",$id_provinsi);
 	}
 
 	/**
 	 * dapatkan kota berdasarkan id_kota
 	 */
 	public function getKotaById($id_kota){
+		$this->db->select("*");
+		$this->db->from("kota");
+		$this->db->where("id_kota",$id_kota);
+		
+		$query = $this->db->get();
 
+		if($query->num_rows() == 1){
+			return $query->result();
+		}
+
+		return false;
 	}
 
 

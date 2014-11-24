@@ -26,7 +26,7 @@
 				<div class="row">
 					<div id="navtitle">
 						<div class="col-sm-4">
-							<div class="navbar-header">Easy TV</div>
+							<div class="navbar-header">Sportive</div>
 						</div>
 					</div>
 					
