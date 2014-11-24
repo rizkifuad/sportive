@@ -65,6 +65,28 @@ class settings extends App_controller {
 		$this->render($content);
 	}
 
+	/**
+	 * form simpan harga dp dan lapangan perjam
+	 */
+
+	public function simpanHarga()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+
+			$session_data = $this->session->userdata('logged_in');
+			
+			$username = $session_data->username;
+			$id_member = $session_data->id_member;
+			$nama = $session_data->nama_pemilik;
+
+			$data['uang_muka'] 	= $this->input->post('uang_muka');
+			$data['harga_per_jam'] = $this->input->post('harga_perjam');
+
+			$this->Member_Model->updateMember($data, $id_member);
+			redirect('admin/settings/harga');
+		}
+	}
 
 	/**
 	 * Pengaturan untuk data lapangan
