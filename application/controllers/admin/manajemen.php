@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Manajemen extends CI_Controller {
+class Manajemen extends App_controller {
 
 	public function __construct(){
 		parent::__construct();

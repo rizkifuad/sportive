@@ -20,7 +20,7 @@
 
 
     </head>
-    <body class="skin-magenta">
+    <body class="skin-red">
         <!-- header logo: style can be found in header.less -->
         <header class="header">
             <a href="<?=base_url()?>" class="logo">
@@ -65,7 +65,7 @@
                     <!-- Sidebar Kri berisi menu Content -->
                     <ul class="sidebar-menu">
                         <li>
-                            <a href="<?=base_url()?>">
+                            <a href="<?=base_url("admin/main")?>">
                                 <i class="glyphicon glyphicon-home"></i> <span>Beranda</span>
                             </a>
                         </li>
@@ -103,19 +103,19 @@
                             <ul class="treeview-menu">
                                 <li>
                                      <a href="<?=base_url("admin/manajemen/grafik")?>">
-                                        <i class="fa fa-angle-double-right"></i> <span>Info</span>
+                                        <i class="fa fa-angle-double-right"></i> <span>Grafik</span>
                                     </a>
                                 </li>
 
                                 <li>
                                      <a href="<?=base_url("admin/manajemen/keuangan")?>">
-                                        <i class="fa fa-angle-double-right"></i> <span>Jadwal</span>
+                                        <i class="fa fa-angle-double-right"></i> <span>Keuangan</span>
                                     </a>
                                 </li>
                                 
                                  <li>
                                      <a href="<?=base_url("admin/manajemen/laporan")?>">
-                                        <i class="fa fa-angle-double-right"></i> <span>Harga</span>
+                                        <i class="fa fa-angle-double-right"></i> <span>Laporan</span>
                                     </a>
                                 </li>
 

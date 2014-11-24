@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class settings extends CI_Controller {
+class settings extends App_controller {
 
 	public function __construct()
 	{
@@ -12,6 +12,11 @@ class settings extends CI_Controller {
 	 */
 	public function info(){
 		
+		$data["title"] = "Info";
+
+		$content = $this->load->view('admin/settings/info', $data, FALSE);
+		$this->render($content);
+
 	}
 
 	/**

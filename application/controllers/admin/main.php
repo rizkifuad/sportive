@@ -34,7 +34,7 @@ class Main extends App_Controller {
 		$data['admin']="Admin Panel";
 
 
-		$content = $this->load->view('main/beranda',$data,true);
+		$content = $this->load->view('admin/main/beranda',$data,true);
 		$this->render($content);
 	}
 
