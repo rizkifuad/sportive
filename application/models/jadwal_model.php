@@ -14,6 +14,15 @@ class jadwal_model extends CI_Model {
 	 * set jadwal untuk hari tertentu
 	 */
 	public function getJadwal($hari, $id_member){
+		$this->db->select("*");
+		$this->db->from("jadwal");
+		$this->db->where("hari",$hari);
+		$this->db->where("id_member",$id_member);
+
+		$query = $this->db->get();
+		$result = $query->result();
+
+		return $result[0];
 
 	}
 
@@ -23,23 +32,49 @@ class jadwal_model extends CI_Model {
 	 */
 
 	public function saveJadwal($data){
+		$this->db->insert("jadwal",$data);
 
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 
 	/**
 	 * update data jadwal
 	 */
-	public function updateJadwal($data){
+	public function updateJadwal($id,$data){
+		$this->db->where('id_jadwal', $id);
+		$this->db->update('jadwal', $data);
 
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 
 	/**
 	 * hapus jadwal
 	 */
-	public function hapusJadwal($data){
-		
+	public function hapusJadwal($id,$data){
+		$this->db->where('id_jadwal', $id);
+		$this->db->delete('jadwal',$data);
+
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }
