@@ -26,7 +26,10 @@ class settings extends App_controller {
 	 * halaman settings untuk pengaturan info basic
 	 */
 	public function info(){
-		
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
 		$data["title"] = "Info";
 
 		$content = $this->load->view('admin/settings/info', $data, true);
@@ -39,7 +42,10 @@ class settings extends App_controller {
 	 */
 
 	public function jadwal(){
-
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
 	}
 
 
@@ -48,13 +54,8 @@ class settings extends App_controller {
 	 */
 	public function harga(){
 		if($this->session->userdata('logged_in')){
-
 			$session_data = $this->session->userdata('logged_in');
-			
-			$username = $session_data->username;
 			$id_member = $session_data->id_member;
-			$nama = $session_data->nama_pemilik;
-
 		}
 
 		$data["title"] = "Harga";
@@ -91,10 +92,47 @@ class settings extends App_controller {
 	 * Pengaturan untuk data lapangan
 	 */
 	public function lapangan(){
+		$this->load->model("lapangan_model");
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
 		$data["title"] = "Lapangan";
+
+		$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
+        $this->registerScript('js/plugins/datatables/dataTables.bootstrap.js');
+		$this->registerScript("js/page/app-lapangan.js");
+
+		$data["lapangan"] = $this->lapangan_model->getLapanganByMember($id_member);
 
 		$content = $this->load->view('admin/settings/lapangan', $data, true);
 		$this->render($content);
+	}
+
+	public function simpan_lapangan(){
+		$this->load->model("lapangan_model");
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$data["id_member"] = $session_data->id_member;
+		}
+
+		if($this->input->post('simpan_lapangan')){
+			$data["nama_lapangan"]      = $this->input->post("nama_lapangan");
+			$data["deskripsi_lapangan"] = $this->input->post('deskripsi_lapangan');
+
+			if($this->input->post("id_lapangan") != "" || $this->input->post("id_lapangan") != null){
+				$id_lapangan = $this->input->post("id_lapangan");
+				$update = $this->lapangan_model->updateLapangan($data,$id_lapangan);
+			}else{
+				$save = $this->lapangan_model->saveLapangan($data);
+			}
+
+
+			redirect("admin/settings/lapangan");
+		}else{
+			exit(0);
+		}
 	}
 }
 
