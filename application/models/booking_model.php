@@ -13,7 +13,7 @@ class Booking_model extends CI_Model {
 	 * get booking by id booking dan id_member
 	 */
 	public function getBooking($id_booking, $id_member){
-		$this->db->select('token, type,jadwal,jumlah_uang,status,id_lapangan');
+		$this->db->select('nama,telp,token, type,jadwal,jumlah_uang,status,id_lapangan');
 		$this->db->from('booking');
 		$this->db->where('id_booking', $id_booking);
 		$this->db->where('id_member', $id_member);
