@@ -8,7 +8,7 @@ class MY_Controller extends CI_Controller{
 	protected $local_stylesheets = array();
 	protected $local_javascripts = array();
 
-	protected $main_title = "Easy TV::Personalized Online Video";
+	protected $main_title = "Sportive";
 
 
 	protected function render($content,$template=NULL) {
@@ -120,8 +120,7 @@ class App_Controller extends MY_controller {
 			'javascripts' => $this->get_javascripts(),
 			'local_javascripts' => $this->local_javascripts,
 			'main_title' => $this->main_title,
-			'first_name' => $session_data->first_name,
-			'last_name' => $session_data->last_name,
+			'nama_pemilik' => $session_data->nama_pemilik,
 			'username' => $session_data->username,
 			'id_member' => $session_data->id_member
 

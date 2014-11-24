@@ -25,7 +25,7 @@
         <header class="header">
             <a href="<?=base_url()?>" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                Admin Panel
+                Sportive
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -53,7 +53,7 @@
                             <img src="<?=base_url()?>assets/img/avatar3.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, <?php echo $first_name." ".$last_name ?></p>
+                            <p>Hello, <?php echo $nama_pemilik ?></p>
 
                             <a href="<?php echo base_url("home/logout")?>"><i class="fa  fa-sign-out text-error"></i> Logout</a>
                         </div>
@@ -69,38 +69,93 @@
                                 <i class="glyphicon glyphicon-home"></i> <span>Beranda</span>
                             </a>
                         </li>
-                       
-                        <li >
-                            <a href="<?=base_url("main/schedule")?>">
-                                <i class="glyphicon glyphicon-calendar"></i> <span>Schedule</span>
-                            </a>
-                        </li>
-
-                        <li>
-                             <a href="<?=base_url("main/publish")?>">
-                                <i class="glyphicon glyphicon-globe"></i> <span>Publish</span>
-
-                            </a>
-                        </li>
-
-                        <li class="treeview">
+                       <li class="treeview">
                             <a href="#">
-                                <i class="glyphicon glyphicon-cog"></i> <span>Settings</span>
+                                <i class="glyphicon glyphicon-calendar"></i> <span>Booking</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                     <a href="<?=base_url("settings/publish")?>">
-                                        <i class="fa fa-angle-double-right"></i> <span>Publish</span>
-
+                                     <a href="<?=base_url("admin/booking/cek_jadwal")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Cek Jadwal</span>
                                     </a>
+                                </li>
 
+                                <li>
+                                     <a href="<?=base_url("admin/booking/booking_offline")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Booking</span>
+                                    </a>
                                 </li>
                                 
+                                 <li>
+                                     <a href="<?=base_url("admin/booking/bayar")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Bayar</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i> <span>Manajemen</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                     <a href="<?=base_url("admin/manajemen/grafik")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Info</span>
+                                    </a>
+                                </li>
 
-                            <ul>
+                                <li>
+                                     <a href="<?=base_url("admin/manajemen/keuangan")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Jadwal</span>
+                                    </a>
+                                </li>
+                                
+                                 <li>
+                                     <a href="<?=base_url("admin/manajemen/laporan")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Harga</span>
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
 
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-cog"></i> <span>Pengaturan</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                     <a href="<?=base_url("admin/settings/info")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Info</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                     <a href="<?=base_url("admin/settings/jadwal")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Jadwal</span>
+                                    </a>
+                                </li>
+                                
+                                 <li>
+                                     <a href="<?=base_url("admin/settings/harga")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Harga</span>
+                                    </a>
+                                </li>
+
+                                 <li>
+                                     <a href="<?=base_url("admin/settings/lapangan")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Lapangan</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                
                     </ul>
                 </section>
                 <!-- /.sidebar -->

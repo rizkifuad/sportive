@@ -39,9 +39,9 @@ class Member_model extends CI_Model {
 	public function check_login($username, $password){
 		$this->db->select("id_member, nama_pemilik, username, email, status");
 		$this->db->from("members");
+		$this->db->where("password", $password);
 		$this->db->where("username", $username);
 		$this->db->or_where("email", $username);
-		$this->db->where("password", $password);
 		
 
 		$query = $this->db->get();

@@ -61,7 +61,7 @@ class Home extends MY_controller {
 		if($username != "" && $password_real != ""){
 			if($check){
 				$this->session->set_userdata('logged_in',$check[0]);
-				$result->url = base_url("main/index");
+				$result->url = base_url("admin/main/index");
 			}else{
 				$result->error = true;
 				$result->msg[] = "Incorrect <b>username</b> or <b>password</b>";
@@ -159,9 +159,6 @@ class Home extends MY_controller {
 
 	}
 
-	public function register(){
-
-	}
 
 	public function cek_jadwal(){
 
