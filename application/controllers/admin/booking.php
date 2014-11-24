@@ -17,7 +17,7 @@ class Booking extends App_controller {
 	 * booking offline
 	 */
 	public function booking_offline(){
-
+		
 	}
 
 

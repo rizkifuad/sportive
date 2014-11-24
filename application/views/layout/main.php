@@ -174,8 +174,11 @@
                         <li class="active">Dashboard</li>
                     </ol> -->
                 </section>
+                <section class="content">
+                    <?php echo $content ?>
+                </section>
 
-                <?php echo $content ?>
+                
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
 
