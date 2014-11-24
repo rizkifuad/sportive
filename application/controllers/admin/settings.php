@@ -47,6 +47,16 @@ class settings extends App_controller {
 	 * pengaturan harga dan dp minimal
 	 */
 	public function harga(){
+		if($this->session->userdata('logged_in')){
+
+			$session_data = $this->session->userdata('logged_in');
+			
+			$username = $session_data->username;
+			$id_member = $session_data->id_member;
+			$nama = $session_data->nama_pemilik;
+
+		}
+
 		$data["title"] = "Harga";
 		$data['default_data'] = $this->Member_Model->getMember('harga_per_jam, uang_muka', $id_member);
 		
