@@ -670,3 +670,11 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `id_negara`) VALUES
 
 ALTER TABLE  `booking` ADD  `nama` VARCHAR( 50 ) NOT NULL AFTER  `id_booking` ,
 ADD  `telp` VARCHAR( 15 ) NOT NULL AFTER  `nama` ;
+
+
+#tambah 3 members
+
+INSERT INTO `members` (`id_member`, `nama_pemilik`, `email`, `telp_pemilik`, `username`, `password`, `nama_tempat`, `alamat_lapangan`, `kota`, `provinsi`, `telp_lapangan`, `uang_muka`, `jml_lapangan`, `harga_per_jam`, `membership`, `status`) VALUES
+(1, '', '', '', 'rizki', '62aa9cce0611320dc0dc5902db8c6940', '', '', '', 0, '', 0, 0, 0, 0, 0),
+(2, '', '', '', 'fitra', '62aa9cce0611320dc0dc5902db8c6940', '', '', '', 0, '', 0, 0, 0, 0, 0),
+(3, '', '', '', 'mustofa', '62aa9cce0611320dc0dc5902db8c6940', '', '', '', 0, '', 0, 0, 0, 0, 0);
