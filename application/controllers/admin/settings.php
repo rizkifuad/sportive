@@ -5,6 +5,7 @@ class settings extends App_controller {
 	public function __construct(){
 		parent::__construct();
 
+
 		if($this->session->userdata('logged_in')){
 
 			$session_data = $this->session->userdata('logged_in');
@@ -16,6 +17,9 @@ class settings extends App_controller {
 		}else{
 			redirect("home");
 		}
+
+		$this->load->model('Member_Model');
+
 	}
 
 	/**
@@ -43,7 +47,11 @@ class settings extends App_controller {
 	 * pengaturan harga dan dp minimal
 	 */
 	public function harga(){
-
+		$data["title"] = "Harga";
+		$data['default_data'] = $this->Member_Model->getMember('harga_per_jam, uang_muka', $id_member);
+		
+		$content = $this->load->view('admin/settings/harga', $data, true);
+		$this->render($content);
 	}
 
 

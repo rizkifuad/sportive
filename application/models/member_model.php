@@ -76,6 +76,14 @@ class Member_model extends CI_Model {
         return $insert_id;
 	}
 
+
+	public function getMember($field, $id)
+	{
+		$this->db->where('id_member', $id);
+		$this->db->select($field);
+		$query = $this->db->get('members');
+		return $query->result_array();
+	}
 }
 
 /* End of file auth_model.php */
