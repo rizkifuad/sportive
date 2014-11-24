@@ -1,0 +1,86 @@
+.logo-provider{
+	background: url("../../img/logo_sprite.png");
+	height: 36px;
+	background-repeat: no-repeat;
+	background-size: 129px;
+	position: absolute;
+	bottom: 6px;
+	right: 10px;
+	opacity: .3;
+}
+
+.logo-provider.youtube{
+	width: 70px;
+background-position-x: 123%;
+}
+
+.logo-provider.dailymotion{
+	width: 39px;
+}
+
+.logo-provider.aol{
+	width: 39px;
+	background-position-x: 39%;
+}
+.result_area{
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.result_area:hover .logo-provider{
+	opacity: 1;
+}
+
+#schedule_sheet{
+	position: absolute;
+	right:0;
+}
+
+#calendar_picker{
+
+	position: absolute;
+	left:10px;
+
+}
+.fc-minor th{
+	color:#fafafa;
+}
+
+.txt_duration{
+	padding: 0 4px;
+	font-weight: bold;
+	font-size: 11px;
+	background-color: #000;
+	color: #fff!important;
+	height: 14px;
+	line-height: 14px;
+	opacity: .75;
+	filter: alpha(opacity=75);
+	display: -moz-inline-stack;
+	vertical-align: top;
+	zoom: 1;
+	display: inline-block;
+
+	position: absolute;
+	top:10px;
+	left:15px;
+}
+
+.delete_event,.edit_event{
+	position: absolute;
+	bottom: 0;
+	right: 5px;
+	color: #fff;
+	display: none;
+	z-index: 1000;
+}
+.edit_event{
+	right:52px;
+}
+
+.delete_event.sh,.edit_event.sh{
+	display: block;
+}
+.fc-month-button{
+	display: none;
+}

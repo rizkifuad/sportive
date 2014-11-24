@@ -1,0 +1,133 @@
+body{
+	background:#fff url("../../img/bg_home.jpg") repeat;
+	font-family: 'Droid Sans', sans-serif;
+}
+a{
+	color:#d93886;
+	cursor: pointer;
+}
+a:hover{
+	color:#515e6f;
+	text-decoration: none;
+		
+}
+p{
+	font-size: .9em;
+	text-align: justify;
+}
+.container{
+	width:1200px;
+}
+
+.box-wrap{
+	width: 100%;
+	margin-top: 50px;
+	background: #fff;
+	box-shadow: 1px 1px 40px rgba(0,0,0,.4);
+	min-height: 200px;
+	margin-bottom: 200px;
+}
+.box-wrap.left{
+	
+
+}
+
+#pinkline{
+	background: #d93886;
+	height: 3px;
+}
+
+#navtitle{
+	background: #c5c5c5;
+	height: 50px;
+}
+
+#navtitle .navbar-header{
+	line-height: 50px;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+
+}
+
+#content,#sidebar{
+	background: #f4f4f4;
+	min-height: 200px;
+	width: 100%;
+
+}
+#footer{
+
+	background: #181818;
+	min-height: 50px;
+
+}
+#footer p{
+	color:#fff;
+	text-align: center;
+	line-height: 36px;
+}
+.nav-tabs > li > a{
+	border: none;
+	border-radius: 0;
+	color:#fff;
+	font-family: 'Droid Sans',sans-serif;
+	font-weight: bold;
+}
+.nav-tabs > li{
+	background: #adadad;
+}
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover{
+	background: #d93886;
+	border:none;
+	color:#fff;
+}
+.nav-tabs > li.active, .nav-tabs > li:hover{
+	background: #d93886;
+}
+
+.tab-content{
+	background: #f4f4f4;
+}
+
+input[type="text"],input[type="email"],input[type="password"]{
+	border:none;
+	border-radius: 0;
+	background: 0;
+	background: #fff;
+}
+
+.btn-jingga{
+	border-radius: 0;
+	background: #515e6f;
+	font-family: 'Droid Sans',sans-serif;
+	color: #fff;
+	font-weight: bold;
+	margin:0 auto;
+	width: 100%;
+	border: none;
+}
+
+.btn-jingga:hover{
+	background: #d93886;
+	color:#fff;
+
+}
+
+.form-control:focus {
+	border-color: #d93886;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,56,133,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,56,133,.6);
+}
+
+.alert{
+	border-radius: 0;
+}
+.alert-danger{
+	background: #C0005D;
+	color:#fff;
+}
+.error{
+	padding: 0 15px;
+}
