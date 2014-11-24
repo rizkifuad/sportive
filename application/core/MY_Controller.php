@@ -86,6 +86,8 @@ class App_Controller extends MY_controller {
 		'js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
 		'js/plugins/iCheck/icheck.min.js',
         'js/AdminLTE/app.js',
+        
+
         );
 
 	 /*	Javascript List
