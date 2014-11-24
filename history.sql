@@ -664,3 +664,9 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `id_negara`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+#add nama dan no telp si pem-booking
+
+ALTER TABLE  `booking` ADD  `nama` VARCHAR( 50 ) NOT NULL AFTER  `id_booking` ,
+ADD  `telp` VARCHAR( 15 ) NOT NULL AFTER  `nama` ;
