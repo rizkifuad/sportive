@@ -84,6 +84,12 @@ class Member_model extends CI_Model {
 		$query = $this->db->get('members');
 		return $query->result_array();
 	}
+
+	public function updateMember($data, $id)
+	{
+		$this->db->where('id_member', $id);
+    	$this->db->update('members', $data);
+	}
 }
 
 /* End of file auth_model.php */
