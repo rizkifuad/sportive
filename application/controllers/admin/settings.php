@@ -45,7 +45,10 @@ class settings extends App_controller {
 	 * Pengaturan untuk data lapangan
 	 */
 	public function lapangan(){
+		$data["title"] = "Lapangan";
 
+		$content = $this->load->view('admin/settings/lapangan', $data, true);
+		$this->render($content);
 	}
 }
 

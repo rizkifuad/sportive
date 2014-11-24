@@ -3059,22 +3059,6 @@ Component: timeline
 	background: #3d3d3d;
 }
 
-.skin-red .box.box-primary{
-	border-top:2px solid #d93886;
-}
-.skin-red .btn-primary{
-	border-radius: 0;
-	background: #515e6f;
-	font-family: 'Droid Sans',sans-serif;
-	color: #fff;
-	font-weight: bold;
-	margin:0 auto;
-	
-	border: none;
-}
-.skin-red .btn-primary:hover{
-	background: #d93886;
-	color:#fff;
 
 /*
 		Skin Black

@@ -678,3 +678,8 @@ INSERT INTO `members` (`id_member`, `nama_pemilik`, `email`, `telp_pemilik`, `us
 (1, '', '', '', 'rizki', '62aa9cce0611320dc0dc5902db8c6940', '', '', '', 0, '', 0, 0, 0, 0, 0),
 (2, '', '', '', 'fitra', '62aa9cce0611320dc0dc5902db8c6940', '', '', '', 0, '', 0, 0, 0, 0, 0),
 (3, '', '', '', 'mustofa', '62aa9cce0611320dc0dc5902db8c6940', '', '', '', 0, '', 0, 0, 0, 0, 0);
+
+
+#add durasi 
+
+ALTER TABLE  `booking` ADD  `durasi` INT( 2 ) NOT NULL AFTER  `jadwal` ;
