@@ -14,7 +14,7 @@ class settings extends App_controller {
 		
 		$data["title"] = "Info";
 
-		$content = $this->load->view('admin/settings/info', $data, FALSE);
+		$content = $this->load->view('admin/settings/info', $data, true);
 		$this->render($content);
 
 	}
