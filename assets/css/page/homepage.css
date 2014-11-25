@@ -4,7 +4,7 @@ body{
 }
 #header{
 	background: #f5f2ef url("../../img/home/headerbg.png") repeat-x;
-	min-height: 164px;
+	min-height: 130px;
 
 }
 
@@ -12,7 +12,7 @@ body{
 	margin-top: 29px;
 	background: url("../../img/home/logo.png") no-repeat;
 	width:384px;
-	height:140px;
+	height:90px;
 	display: block;	
 	text-indent: -99999px;
 }
@@ -20,9 +20,53 @@ body{
 #content{
 	background: #f5f2ef;
 	min-height: 300px;
+	margin:15px 0;
+}
+.box-find{
+	background: #e14100; /* Old browsers */
+	background: -moz-linear-gradient(top,  #e14100 0%, #ad3000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e14100), color-stop(100%,#ad3000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #e14100 0%,#ad3000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #e14100 0%,#ad3000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #e14100 0%,#ad3000 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #e14100 0%,#ad3000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e14100', endColorstr='#ad3000',GradientType=0 ); /* IE6-9 */
+
+	min-height: 200px;
+	border-radius: 15px;
+	color:#fff;
+	padding:20px 30px;
+}
+.box-head{
+	font-size: 20px;
+	font-family: "Arial";
+	font-weight: bold;
+	text-align: center;
 }
 #footer{
 	background: #282828;
 	border-top:13px solid #af3100;
 	min-height: 200px;
+}
+
+.btn-cari{
+	border:none;
+	background: #2dc110; /* Old browsers */
+	background: -moz-linear-gradient(top,  #2dc110 0%, #17a02b 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2dc110), color-stop(100%,#17a02b)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #2dc110 0%,#17a02b 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #2dc110 0%,#17a02b 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #2dc110 0%,#17a02b 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #2dc110 0%,#17a02b 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2dc110', endColorstr='#17a02b',GradientType=0 ); /* IE6-9 */
+	display: inherit;
+	width:200px;
+	height:40px;
+	font-size: 18px;
+	font-weight: bold;
+	margin:0 auto;
+}
+.btn-cari:hover{
+	border:none;
+	color:#fff;
 }

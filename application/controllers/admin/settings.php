@@ -142,8 +142,8 @@ class settings extends App_controller {
 			$data['email'] 			= $this->input->post('email_pemilik');
 			$data['telp_pemilik'] 	= $this->input->post('telp_pemilik');
 			$data['username'] 		= $this->input->post('username_pemilik');
-			$data['password'] 		= $this->input->post('pass_pemilik');
-			$konfirmasi_pass 		= $this->input->post('konf_pass');
+			$data['password'] 		= md5($this->input->post('pass_pemilik'));
+			$konfirmasi_pass 		= md5($this->input->post('konf_pass'));
 			
 			if($data['password'] == $konfirmasi_pass)
 				$this->Member_Model->updateMember($data, $id_member);
