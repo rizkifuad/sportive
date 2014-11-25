@@ -19,6 +19,7 @@ class settings extends App_controller {
 		}
 
 		$this->load->model('Member_Model');
+		$this->load->model('Wilayah_Model');
 
 	}
 
@@ -31,7 +32,9 @@ class settings extends App_controller {
 			$id_member = $session_data->id_member;
 		}
 		$data["title"] = "Info";
-
+		$data['data_prov'] = $this->Wilayah_Model->getProvinsi();
+		$data['data_kota'] = $this->Wilayah_Model->getKotaByProvinsi(16);
+		$data['all_data'] = $this->Member_Model->getMemberById('*', $id_member);
 		$content = $this->load->view('admin/settings/info', $data, true);
 		$this->render($content);
 
@@ -65,7 +68,7 @@ class settings extends App_controller {
 		}
 
 		$data["title"] = "Harga";
-		$data['default_data'] = $this->Member_Model->getMember('harga_per_jam, uang_muka', $id_member);
+		$data['default_data'] = $this->Member_Model->getMemberById('harga_per_jam, uang_muka', $id_member);
 		
 		$content = $this->load->view('admin/settings/harga', $data, true);
 		$this->render($content);
@@ -91,6 +94,60 @@ class settings extends App_controller {
 
 			$this->Member_Model->updateMember($data, $id_member);
 			redirect('admin/settings/harga');
+		}
+	}
+
+	/**
+	 * form simpan data sport center
+	 */
+
+	public function simpanInfoSportCenter()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+
+			$session_data = $this->session->userdata('logged_in');
+			
+			$username = $session_data->username;
+			$id_member = $session_data->id_member;
+			$nama = $session_data->nama_pemilik;
+
+			$data['nama_tempat'] 		= $this->input->post('nama_sport');
+			$data['alamat_lapangan'] 	= $this->input->post('alamat_sport');
+			$data['provinsi'] 			= $this->input->post('prov_sport');
+			$data['kota'] 				= $this->input->post('kota_sport');
+			$data['telp_lapangan'] 		= $this->input->post('telp_sport');
+
+			$this->Member_Model->updateMember($data, $id_member);
+			redirect('admin/settings/info');
+		}
+	}
+
+	/**
+	 * form simpan data pemilik
+	 */
+
+	public function simpanInfoPemilik()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+
+			$session_data = $this->session->userdata('logged_in');
+			
+			$username = $session_data->username;
+			$id_member = $session_data->id_member;
+			$nama = $session_data->nama_pemilik;
+
+			$data['nama_pemilik'] 	= $this->input->post('nama_pemilik');
+			$data['email'] 			= $this->input->post('email_pemilik');
+			$data['telp_pemilik'] 	= $this->input->post('telp_pemilik');
+			$data['username'] 		= $this->input->post('username_pemilik');
+			$data['password'] 		= $this->input->post('pass_pemilik');
+			$konfirmasi_pass 		= $this->input->post('konf_pass');
+			
+			if($data['password'] == $konfirmasi_pass)
+				$this->Member_Model->updateMember($data, $id_member);
+			redirect('admin/settings/info');
 		}
 	}
 
