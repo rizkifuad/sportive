@@ -2,7 +2,7 @@
     <div class="box-header">
         <h3 class="box-title">Quick Example</h3>
     </div><!-- /.box-header -->
-    <!-- form start -->
+    <!-- form penyimpanan booking -->
     <form role="form" method="post" action="<?=base_url("admin/booking/save_booking")?>">
         <div class="box-body">
             <div class="form-group">
@@ -26,17 +26,23 @@
                 <input type="number" class="form-control" name="durasi" id="durasi" placeholder="Durasi Jam">
             </div>
             <div class="form-group">
-                <label for="DP">Jumlah DP</label>
-                <input type="number" class="form-control" name="dp" id="dp" placeholder="Jumlah DP">
+                <label for="DP">
+                Jumlah DP</label>
+                <input type="number" class="form-control" name="dp" id="dp" placeholder="Jumlah DP" 
+                min="<?php foreach ($dp as $key => $value) {
+                    echo($value['uang_muka']);
+                }?>">
             </div>
             <div class="form-group">
                 <label for="DP">Lapangan</label>
                 <select class="form-control" id="lapangan" name="lapangan">
-                    <option>Lapangan 1</option>
-                    <option>Lapangan 2</option>
-                    <option>Lapangan 3</option>
-                    <option>Lapangan 4</option>
-                    <option>Lapangan 5</option>
+                    <!-- Get list lapangan by member id -->
+                    <?php 
+                        foreach ($lapangan as $key => $value) {
+                            echo ("<option>".$value->nama_lapangan."</option>");
+                        }
+
+                    ?>
                 </select>
             </div>
 
@@ -45,5 +51,6 @@
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </form>
+    </form> <!-- /.form penyimpanan booking -->
+
 </div><!-- /.box -->

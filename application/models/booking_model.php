@@ -9,9 +9,7 @@ class Booking_model extends CI_Model {
 	}
 
 
-	/**
-	 * get booking by id booking dan id_member
-	 */
+	
 
 	/*
 		Token : itu digenerate random automatically
@@ -22,7 +20,9 @@ class Booking_model extends CI_Model {
 
 	*/
 
-
+	/**
+	 * get booking by id booking dan id_member
+	 */
 	public function getBooking($id_booking, $id_member){
 		$this->db->select('nama,telp,token, type,jadwal,jumlah_uang,status,id_lapangan');
 		$this->db->from('booking');

@@ -44,6 +44,24 @@ class lapangan_model extends CI_Model {
 		return false;
 	}
 
+	/**
+	 * GET lapangan sesuai nama lapangan dan id member
+	 */
+
+	public function getLapanganByNameAndMember($id_member,$nama){
+		$this->db->select("*");
+		$this->db->from("lapangan");
+		$this->db->where("id_member",$id_member);
+		$this->db->where("nama_lapangan",$nama);
+
+		$query = $this->db->get();
+
+		if($query->num_rows() >= 1){
+			return $query->result();
+		}
+
+		return false;
+	}
 
 	/**
 	 * simpan data lapangan

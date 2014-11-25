@@ -18,6 +18,17 @@ class Booking extends App_controller {
 	 */
 	public function booking_offline(){
 		$data["title"] = "Info";
+		$this->load->model('lapangan_model');
+		$this->load->model('member_model');
+
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
+		$data['lapangan'] = $this->lapangan_model->getLapanganByMember($id_member);
+		$data['dp'] = $this->member_model->getMember("uang_muka",$id_member);
+
 		$this->registerScript('js/page/booking.js');
 		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
 		$this->registerScript('js/plugins/timepicker/bootstrap-timepicker.min.js');
@@ -31,8 +42,17 @@ class Booking extends App_controller {
 		$this->render($content);
 	}
 
+	/**
+	 *	Menyimpan semua booking offline pada menu booking
+	 */
 	public function save_booking(){
 		$this->load->model('booking_Model');
+		$this->load->model('lapangan_model');
+
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
 
 		$nama = $this->input->post("nama");
 		$telepon = $this->input->post("telepon");
@@ -40,9 +60,13 @@ class Booking extends App_controller {
 		$jam = $this->input->post("jam");
 		$durasi = $this->input->post("durasi");
 		$dp = $this->input->post("dp");
-		$lapangan = $this->input->post("lapangan");
+		
+		$nama_lapangan = $this->input->post("lapangan");
+		$id_lapangan = $this->lapangan_model->getLapanganByNameAndMember($id_member,$nama_lapangan);
+
 		$token = time();
 		$jadwal = $tanggal." ".$jam;
+
 
 		$data = array(
 			'nama' =>$nama ,
@@ -52,13 +76,15 @@ class Booking extends App_controller {
 			'jadwal' =>$jadwal ,
 			'durasi' =>$durasi ,
 			'jml_uang' =>$dp ,
-			'id_lapangan' =>$lapangan ,
-			'id_member'=>2
+			'id_lapangan' =>$id_lapangan[0]->id_lapangan ,
+			'id_member'=>$id_member
 
 		);
 		$id_booking = $this->booking_Model->saveBooking($data);
-		echo ($tanggal);
-		echo ($id_booking);
+		
+		if($id_booking){
+			redirect('admin/main/index','refresh');
+		}
 
 	}
 
