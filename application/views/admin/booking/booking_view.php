@@ -15,7 +15,7 @@
             </div>
             <div class="form-group">
                 <label for="tanggal">Tanggal</label>
-                <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Booking" data-date-format="YYYY/MM/DD"required>
+                <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Booking" data-date-format="YYYY-MM-DD"required>
             </div>
             <div class="form-group bootstrap-timepicker">
                 <label for="tanggal">Jam</label>
@@ -29,9 +29,7 @@
                 <label for="DP">
                 Jumlah DP</label>
                 <input type="number" class="form-control" name="dp" id="dp" placeholder="Jumlah DP" 
-                min="<?php foreach ($dp as $key => $value) {
-                    echo($value['uang_muka']);
-                }?>">
+                min="<?=$dp["uang_muka"]?>">
             </div>
             <div class="form-group">
                 <label for="DP">Lapangan</label>

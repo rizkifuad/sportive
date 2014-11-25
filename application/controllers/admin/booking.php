@@ -27,7 +27,7 @@ class Booking extends App_controller {
 		}
 
 		$data['lapangan'] = $this->lapangan_model->getLapanganByMember($id_member);
-		$data['dp'] = $this->member_model->getMember("uang_muka",$id_member);
+		$data['dp'] = $this->member_model->getMemberById("uang_muka",$id_member);
 
 		$this->registerScript('js/page/booking.js');
 		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
@@ -83,7 +83,8 @@ class Booking extends App_controller {
 		$id_booking = $this->booking_Model->saveBooking($data);
 		
 		if($id_booking){
-			redirect('admin/main/index','refresh');
+			// redirect('admin/main/index','refresh');
+			echo $jadwal;
 		}
 
 	}
