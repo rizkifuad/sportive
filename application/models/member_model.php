@@ -77,12 +77,12 @@ class Member_model extends CI_Model {
 	}
 
 
-	public function getMember($field, $id)
+	public function getMemberById($field, $id)
 	{
 		$this->db->where('id_member', $id);
 		$this->db->select($field);
 		$query = $this->db->get('members');
-		return $query->result_array();
+		return $query->row_array();
 	}
 
 	public function updateMember($data, $id)
