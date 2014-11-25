@@ -4,7 +4,7 @@
          <div class="box-header">
             <h3 class="box-title" id="title_lapangan">Tambah lapangan</h3>
             <div class="pull-right" style="padding:5px;">
-                <btn href="#" id="_tambah_lapangan" class="btn btn-info btn-sm hide">Tambah lapangan</btn>
+                
             </div>
         </div>
         <!-- form start -->
@@ -24,6 +24,7 @@
 
             <div class="box-footer">
                 <button type="submit" name="simpan_lapangan" value="Simpan" class="btn btn-primary">Simpan</button>
+                <buttonn type="button" id="_tambah_lapangan" class="btn btn-info hide">Cancel</buttonn>
             </div>
         </form>
     </div><!-- /.box -->
