@@ -20,10 +20,16 @@ class Home extends MY_controller {
 
 		}
 	}
+	public function index(){
+		$data["title"] = "Beranda";
+		$this->registerCss("css/bootstrap.min.css");
+		$this->registerCss("css/page/homepage.css");
+		$content = $this->load->view('home/homepage', $data, true);
 
-	public function index()
-	{
-		$data['title'] = "Beranda";
+		$this->render($content);
+	}
+	public function login(){
+		$data['title'] = "Sign in";
 		if($this->session->userdata('logged_in')){
 			redirect("main");
 		}

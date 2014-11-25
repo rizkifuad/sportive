@@ -1,0 +1,28 @@
+body{
+	background: #f5f2ef;
+	font-family: 'Droid Sans', sans-serif;
+}
+#header{
+	background: #f5f2ef url("../../img/home/headerbg.png") repeat-x;
+	min-height: 164px;
+
+}
+
+#header .logo{
+	margin-top: 29px;
+	background: url("../../img/home/logo.png") no-repeat;
+	width:384px;
+	height:140px;
+	display: block;	
+	text-indent: -99999px;
+}
+
+#content{
+	background: #f5f2ef;
+	min-height: 300px;
+}
+#footer{
+	background: #282828;
+	border-top:13px solid #af3100;
+	min-height: 200px;
+}

@@ -90,7 +90,7 @@
 					<div id="footer">
 						<div id="pinkline">&nbsp;</div>
 						<div class="col-md-12">
-							<p>Copyright &copy; 2015. Easy TV.</p>
+							<p>Copyright &copy; 2015. Sportive.</p>
 						</div>
 					</div>
 

@@ -46,6 +46,12 @@ class settings extends App_controller {
 			$session_data = $this->session->userdata('logged_in');
 			$id_member = $session_data->id_member;
 		}
+
+		$data["title"] = "Jadwal";
+
+		$content = $this->load->view('admin/settings/jadwal', $data, true);
+		$this->render($content);
+
 	}
 
 
