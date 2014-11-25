@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$('#tanggal').datepicker({
-		format: 'yyyy-dd-mm',
+		format: 'yyyy-mm-dd',
 	});
 	$('#jam').timepicker({
 		minuteStep: 30,

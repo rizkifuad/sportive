@@ -59,6 +59,7 @@ class Booking extends App_controller {
 	public function save_booking(){
 		$this->load->model('booking_Model');
 		$this->load->model('lapangan_model');
+		$this->load->model('member_model');
 
 		if($this->session->userdata('logged_in')){
 			$session_data = $this->session->userdata('logged_in');
@@ -71,7 +72,21 @@ class Booking extends App_controller {
 		$jam = $this->input->post("jam");
 		$durasi = $this->input->post("durasi");
 		$dp = $this->input->post("dp");
-		
+
+		/**
+		 * Check uang muka lunas atau tidak
+		 */
+		$harga = $this->member_model->getMemberById("harga_per_jam",$id_member);
+		if($dp == $harga['harga_per_jam']*$durasi){
+			$status = 2;
+		}
+		else{
+			$status = 1;
+		}
+
+		/**
+		 * Get list lapangan
+		 */
 		$nama_lapangan = $this->input->post("lapangan");
 		$id_lapangan = $this->lapangan_model->getLapanganByNameAndMember($id_member,$nama_lapangan);
 
@@ -87,6 +102,7 @@ class Booking extends App_controller {
 			'jadwal' =>$jadwal ,
 			'durasi' =>$durasi ,
 			'jml_uang' =>$dp ,
+			'status' =>$status,
 			'id_lapangan' =>$id_lapangan[0]->id_lapangan ,
 			'id_member'=>$id_member
 
@@ -94,8 +110,7 @@ class Booking extends App_controller {
 		$id_booking = $this->booking_Model->saveBooking($data);
 		
 		if($id_booking){
-			// redirect('admin/main/index','refresh');
-			echo $jadwal;
+			redirect('admin/main/index','refresh');
 		}
 
 	}
