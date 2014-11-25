@@ -4,6 +4,18 @@ class Manajemen extends App_controller {
 
 	public function __construct(){
 		parent::__construct();
+
+		if($this->session->userdata('logged_in')){
+
+			$session_data = $this->session->userdata('logged_in');
+			
+			$data['username'] = $session_data->username;
+			$data['id_member'] = $session_data->id_member;
+			$data['nama'] = $session_data->nama_pemilik;
+
+		}else{
+			redirect("home/login");
+		}
 	}
 
 	/**

@@ -1,11 +1,4 @@
-<div id="header">
-	<div class="container">
-		<a href="<?=base_url()?>" class="logo"><?=$title?> - Sportive.</a>
-	</div>
 
-</div>
-<div id="content">
-	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
 				<div class="box-find">
@@ -14,26 +7,37 @@
 					</div>
 					<div class="box-body">
 						<br>
-						<form role="form" method="post" action="<?=base_url("home/find_sportcenter")?>">
+						<form role="form" method="get" action="<?=base_url("home/find_sportcenter")?>">
 							<div class="form-group">
-								<label>Pilih olahraga</label>
-								<select class="form-control">
-									<option>Futsal</option>
+
+								<label>Pilih provinsi</label>
+								<select class="form-control chosen_provinsi" name="provinsi">
+									<?php
+										foreach ($provinsi as $key => $prov) {
+											$sel = "";
+											if($prov["id_provinsi"] == 16)$sel = "selected";
+											echo "<option value=\"{$prov["id_provinsi"]}\" {$sel}>{$prov["nama_provinsi"]}</option>";
+										}
+									?>
 								</select>
 
 							</div>
 
 							<div class="form-group">
 								<label>Pilih kota</label>
-								<select class="form-control">
-									<option>Futsal</option>
+								<select class="form-control chosen_kota" name="kota">
+									<?php
+										foreach ($kota as $key => $data) {
+											echo "<option value=\"{$data["id_kota"]}\">{$data["nama_kota"]}</option>";
+										}
+									?>
 								</select>
 
 							</div>
 							
 							<div class="form-group">
 								<label>Masukkan nama sportcenter</label>
-								<input type="text" class="form-control ">
+								<input name="sporcenter" type="text" class="form-control" placeholder="Masukkan nama sportcenter(jika ada)"> 
 
 							</div>
 
@@ -43,16 +47,14 @@
 
 							</div>
 						</form>
-					</div>
+					</div><!-- box-body -->
+
 				</div>
 			</div>
+
 			<div class="col-md-7">
 				
 			</div>
 		</div>
 
-	</div>
-</div>
-<div id="footer">
-	<div class="container"></div>
-</div>
+		<br>

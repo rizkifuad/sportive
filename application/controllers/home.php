@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends MY_controller {
-	protected $layout = 'layout/empty';
+	protected $layout = 'layout/home';
 	protected $javascripts = array("js/jquery2-1-1.min.js","bootstrap/js/bootstrap.min.js");
-	protected $stylesheets = array();
+	protected $stylesheets = array("css/bootstrap.min.css","css/page/homepage.css");
 
 	public function __construct()
 	{
@@ -21,9 +21,17 @@ class Home extends MY_controller {
 		}
 	}
 	public function index(){
+		$this->load->model("wilayah_model");
 		$data["title"] = "Beranda";
-		$this->registerCss("css/bootstrap.min.css");
-		$this->registerCss("css/page/homepage.css");
+	
+		$this->registerCss("css/chosen/chosen.css");
+		$this->registerScript("js/plugins/chosen/chosen.jquery.js");
+		$this->registerScript("js/page/homepage.js");
+
+		$data["default_prov"] = 16;
+		$data["provinsi"]     = $this->wilayah_model->getProvinsi();
+		$data["kota"]         = $this->wilayah_model->getKotaByProvinsi($data["default_prov"]);
+
 		$content = $this->load->view('home/homepage', $data, true);
 
 		$this->render($content);
@@ -33,10 +41,8 @@ class Home extends MY_controller {
 		if($this->session->userdata('logged_in')){
 			redirect("main");
 		}
-		$this->registerCss("css/bootstrap.min.css");
-		$this->registerCss("css/page/home.css");
-		$this->registerScript("js/page/app-home.js");
 		
+		$this->registerScript("js/page/app-login.js");
 		$content = $this->load->view('home/login', $data, true);
 
 		$this->render($content);
@@ -161,7 +167,7 @@ class Home extends MY_controller {
 		$this->session->set_userdata('logged_in',null);
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
-		redirect('home');
+		redirect('home/login');
 
 	}
 
