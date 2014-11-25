@@ -17,7 +17,7 @@ class Main extends App_Controller {
 
 
 		}else{
-			redirect("home");
+			redirect("home/login");
 		}
 	}
 

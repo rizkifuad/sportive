@@ -15,7 +15,7 @@ class settings extends App_controller {
 			$data['nama'] = $session_data->nama_pemilik;
 
 		}else{
-			redirect("home");
+			redirect("home/login");
 		}
 
 		$this->load->model('Member_Model');
