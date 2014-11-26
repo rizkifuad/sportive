@@ -18,11 +18,11 @@ class wilayah_model extends CI_Model {
 
 		$query = $this->db->get();
 
-		if($query->num_rows() == 1){
-			return $query->result();
+		if($query->num_rows() >= 1){
+			return $query->result_array();
 		}
 
-		return $query->result_array();
+		return false;
 	}
 
 	/**

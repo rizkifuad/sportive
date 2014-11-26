@@ -9,7 +9,6 @@
 						<br>
 						<form role="form" method="get" action="<?=base_url("home/find_sportcenter")?>">
 							<div class="form-group">
-
 								<label>Pilih provinsi</label>
 								<select class="form-control chosen_provinsi" name="provinsi">
 									<?php
@@ -36,8 +35,8 @@
 							</div>
 							
 							<div class="form-group">
-								<label>Masukkan nama sportcenter</label>
-								<input name="sporcenter" type="text" class="form-control" placeholder="Masukkan nama sportcenter(jika ada)"> 
+								<label>Masukkan nama sportcenter (optional)</label>
+								<input name="sporcenter" type="text" class="form-control" placeholder="Masukkan nama sportcenter(optional)"> 
 
 							</div>
 

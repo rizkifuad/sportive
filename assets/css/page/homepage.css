@@ -106,6 +106,13 @@ a:hover{
 #footer a{
 	color:#969696;
 }
+#footer .logo{
+	background: url("../../img/home/logo-sm.png") no-repeat;
+	width:384px;
+	height:40px;
+	display: block;	
+	text-indent: -99999px;
+}
 #footer a:hover{
 	color:#f6f6f6;
 }

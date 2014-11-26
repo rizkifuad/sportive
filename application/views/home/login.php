@@ -1,4 +1,5 @@
 <div class="row">
+	<div class="col-md-4"></div>
 	<div id="content" class="col-md-4">
 		<br>
 		<div id="register_error" class="alert alert-danger hide" role="alert">
@@ -8,7 +9,7 @@
 			
 		</div>
 		<div class="frm-sign-in">
-			<h5 id="form_title" class="title">Don't have an account? <a id="register-chor">Register</a></h5>
+			<h3 >Login</h3>
 			<form id="frm-login" role="form"  action="<?php echo base_url("home/auth")?>" method="post">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Enter email/username" name="username">
@@ -47,6 +48,6 @@
 		</div>
 		<br>
 	</div>
-	
+	<div class="col-md-4"></div>
 </div>
 

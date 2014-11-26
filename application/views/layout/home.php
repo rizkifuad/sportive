@@ -69,8 +69,13 @@ U::loadScripts($javascripts);
                     <strong>Email : </strong><a href="mailto:info@sportive.com">info@sportive.com</a><br>
                     <strong>Phone : </strong>081 335 890123<br>
                 </p>
+                <br>
             </div>
 
+            <div class="col-md-3">
+                <a href="<?=base_url()?>" class="logo">Sportive</a>
+                <p>Copyright &copy; 2015. Sportive.</p>
+             </div>
 
         </div>
     </div>
