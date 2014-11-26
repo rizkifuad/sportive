@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	 $("#data_lapangan").dataTable();
 	var $btn_edit 		= $(".btn-edit");
 	var $title_lapangan = $("#title_lapangan");
 	var $id_lapangan    = $("#id_lapangan");
