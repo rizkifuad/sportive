@@ -34,7 +34,7 @@
                     <td><?=substr($data->jadwal, 11)?></td>
                     <td><?=$data->durasi?></td>
                     <td><?=$data->jml_uang?></td>
-                    <td><?=$pelunasan?></td>
+                    <td><?=$data->pelunasan?></td>
                     <td><button class="btn btn-info btn-sm btn-edit" data-id="<?=$data->id_lapangan?>">Pelunasan</button></td>
                 </tr>
             <?php
