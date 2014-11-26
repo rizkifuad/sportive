@@ -73,12 +73,23 @@ class Booking_model extends CI_Model {
 		$this->db->where('status !=', 3);
 		$this->db->like('jadwal', $date);
 		$this->db->join('lapangan', 'booking.id_lapangan = lapangan.id_lapangan', 'left');
+		$this->db->order_by('jadwal','asc'); 
 
 		$query = $this->db->get();
 		$result = $query->result();
 		return $result;
+	}
+	public function pelunasan($data,$id_booking,$id_member,$kekurangan){
+		$this->db->set("jml_uang", "jml_uang+".$kekurangan, false);
+		$this->db->where('id_booking', $id_booking);
+		$this->db->where('id_member', $id_member);
+		$this->db->update('booking', $data);
 
-
+		if ($this->db->affected_rows() == '1')
+		{
+			return 1;
+		}
+		  	return 0;
 	}
 }
 

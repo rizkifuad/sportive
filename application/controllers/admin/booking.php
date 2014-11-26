@@ -128,7 +128,12 @@ class Booking extends App_controller {
 		}
 
 		$data["title"] = "Info";
-		$this->registerScript('js/page/booking.js');
+		
+		
+		$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
+        $this->registerScript('js/plugins/datatables/dataTables.bootstrap.js');
+		$this->registerCss('css/dataTables/dataTables.bootstrap.css');
+		$this->registerScript('js/page/app-bayar.js');
 
 		$data['booking'] = $this->booking_model->getBookingTodayById($id_member);
 		$total = $this->member_model->getMemberById("harga_per_jam",$id_member);
@@ -140,6 +145,25 @@ class Booking extends App_controller {
 		}
 		$content = $this->load->view('admin/booking/bayar_view', $data, true);
 		$this->render($content);
+	}
+
+	public function pelunasan(){
+		$this->load->model('booking_model');
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
+		$id_booking = $this->input->post("id_booking");
+		$kekurangan = $this->input->post("kekurangan");
+
+		$data = array(
+			'status' => 3 , 
+		);
+
+		$pelunasan = $this->booking_model->pelunasan($data,$id_booking,$id_member,$kekurangan);
+		redirect("admin/booking/bayar");
+
 	}
 }
 

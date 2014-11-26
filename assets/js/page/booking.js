@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	$('#tanggal').datepicker({
 		format: 'yyyy-mm-dd',
 	});
@@ -8,5 +7,4 @@ $(document).ready(function(){
         showInputs: false,
 	    showMeridian : false
   	});
-
 });

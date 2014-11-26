@@ -114,6 +114,7 @@ body.fixed .wrapper {
 	padding: 20px 15px;
 	background: #f9f9f9;
 	overflow: auto;
+	min-height: 500px;
 }
 /* Utility */
 /* H1 - H6 font */
