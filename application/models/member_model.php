@@ -76,7 +76,6 @@ class Member_model extends CI_Model {
         return $insert_id;
 	}
 
-
 	public function getMemberById($field, $id)
 	{
 		$this->db->where('id_member', $id);

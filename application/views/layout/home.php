@@ -22,7 +22,7 @@ U::loadScripts($javascripts);
     <div id="header">
         <div class="container">
             <a href="<?=base_url()?>" class="logo"><?=$title?> - Sportive.</a>
-            <a class="btn-join">Join Now</a>
+            <a href="<?=base_url("home/join_now")?>" class="btn-join">Join Now</a>
         </div>
 
     </div>
@@ -40,7 +40,7 @@ U::loadScripts($javascripts);
             <div class="col-md-2">
                 <ul class="foot-link">
                     <li><a href="<?=base_url("home/login")?>">Sign In</a></li>
-                    <li><a href="<?=base_url("home/login")?>">Join</a></li>
+                    <li><a href="<?=base_url("home/join_now")?>">Join</a></li>
                     <li><a href="<?=base_url("home/login")?>">Tentang kami</a></li>
                     <li><a href="<?=base_url("home/login")?>">Kontak kami</a></li>
                     <li><a href="<?=base_url("home/login")?>">Privacy policy</a></li>
