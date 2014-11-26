@@ -119,7 +119,27 @@ class Booking extends App_controller {
 	 * halaman digunakan untuk melakukan pelunasan pembayaran
 	 */
 	public function bayar(){
+		$this->load->model('member_model');
+		$this->load->model('booking_model');
 
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
+		$data["title"] = "Info";
+		$this->registerScript('js/page/booking.js');
+
+		$data['booking'] = $this->booking_model->getBookingTodayById($id_member);
+		$total = $this->member_model->getMemberById("harga_per_jam",$id_member);
+
+		foreach ($data['booking'] as $key => $value) {
+			$hasil = (int)$value->durasi*(int)$total['harga_per_jam'];
+			$data['pelunasan'] = (int)$hasil - (int)$value->jml_uang;
+			$hasil = 0;
+		}
+		$content = $this->load->view('admin/booking/bayar_view', $data, true);
+		$this->render($content);
 	}
 }
 

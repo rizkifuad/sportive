@@ -61,6 +61,25 @@ class Booking_model extends CI_Model {
 
         return $insert_id;
 	}
+
+	/**
+	 * Bayar Booking model
+	 */
+	public function getBookingTodayById($id_member){
+		$date = date("Y-m-d");
+		$this->db->select('id_booking, nama, telp, jadwal, durasi, jml_uang, status, booking.id_lapangan, nama_lapangan');
+		$this->db->from('booking');
+		$this->db->where('booking.id_member', $id_member);
+		$this->db->where('status !=', 3);
+		$this->db->like('jadwal', $date);
+		$this->db->join('lapangan', 'booking.id_lapangan = lapangan.id_lapangan', 'left');
+
+		$query = $this->db->get();
+		$result = $query->result();
+		return $result;
+
+
+	}
 }
 
 /* End of file booking_model.php */
