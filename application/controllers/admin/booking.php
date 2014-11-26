@@ -135,7 +135,7 @@ class Booking extends App_controller {
 
 		foreach ($data['booking'] as $key => $value) {
 			$hasil = (int)$value->durasi*(int)$total['harga_per_jam'];
-			$data['pelunasan'] = (int)$hasil - (int)$value->jml_uang;
+			$data["booking"][$key]->pelunasan = (int)$hasil - (int)$value->jml_uang;
 			$hasil = 0;
 		}
 		$content = $this->load->view('admin/booking/bayar_view', $data, true);
