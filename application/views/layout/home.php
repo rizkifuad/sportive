@@ -83,5 +83,6 @@ U::loadScripts($javascripts);
 U::loadScripts($local_javascripts);
 ?>
     <input type="hidden" value="<?=base_url()?>" id="base_url"></input>
+    <!--<script src="http://192.168.1.131:8080/remote.js?400027D4-C43E-4F6E-A262-2B3E0E006276"></script>-->
 	</body>
 </html>

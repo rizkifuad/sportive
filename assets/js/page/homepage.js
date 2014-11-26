@@ -8,7 +8,9 @@ $(document).ready(function(){
 	var url = $("#base_url").val();
 
 	$chosen_provinsi.on('change', function(evt, params) {
-		var id_provinsi = params.selected;
+		console.log($chosen_provinsi.val());
+		
+		var id_provinsi = $chosen_provinsi.val();
 		var kota = $.ajax({
 			url    : url + "api/getKotaByProvinsi",
 			method : "GET",

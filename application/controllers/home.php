@@ -8,17 +8,7 @@ class Home extends MY_controller {
 	public function __construct()
 	{
 		parent::__construct();
-		if($this->session->userdata('logged_in')){
 
-			$session_data = $this->session->userdata('logged_in');
-			
-			$data['username'] 	= $session_data->username;
-			$data['id_member'] 	= $session_data->id_member;
-			$data['first_name'] = $session_data->first_name;
-			$data['last_name'] 	= $session_data->last_name;
-
-
-		}
 	}
 	public function index(){
 		$this->load->model("wilayah_model");
@@ -39,7 +29,7 @@ class Home extends MY_controller {
 	public function login(){
 		$data['title'] = "Sign in";
 		if($this->session->userdata('logged_in')){
-			redirect("main");
+			redirect("admin/main");
 		}
 		
 		$this->registerScript("js/page/app-login.js");
@@ -172,8 +162,17 @@ class Home extends MY_controller {
 	}
 
 
-	public function cek_jadwal(){
+	public function registrasi_pemilik(){
+		$paket        = $this->uri->segment(3);
+		$daftar_paket = array("premium","free","ultimate");
 
+		if($paket == "" || !( in_array($paket, $daftar_paket) )){
+			redirect("home/paket_harga");
+		}
+		$data["title"] = "Registrasi pemilik";
+		$content       = $this->load->view("home/registrasi_pemilik",$data,true);
+
+		$this->render($content);
 	}
 
 

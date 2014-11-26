@@ -14,7 +14,7 @@
                 <p><strong>24/7 Unlimited</strong> Support</p>
             </div>
             <div class="pricing-table-sign-up">
-                <p><a href="http://bloggingbolt.blogspot.com">Sign Up Now</a></p>
+                <p><a href="<?=base_url("home/registrasi_pemilik/free")?>">Sign Up Now</a></p>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
                 <p><strong>24/7 Unlimited</strong> Support</p>
             </div>
             <div class="pricing-table-sign-up">
-                <p><a href="http://bloggingbolt.blogspot.com">Sign Up Now</a></p>
+                <p><a href="<?=base_url("home/registrasi_pemilik/premium")?>">Sign Up Now</a></p>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                 <p><strong>24/7 Unlimited</strong> Support</p>
             </div>
             <div class="pricing-table-sign-up">
-                <p><a href="http://bloggingbolt.blogspot.com">Coming soon..</a></p>
+                <p><a datahref="<?=base_url("home/registrasi_pemilik/ultimate")?>">Coming soon..</a></p>
             </div>
         </div>
     </div>
