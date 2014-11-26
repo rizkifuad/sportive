@@ -1,12 +1,10 @@
 <!-- general form elements -->
-<div class="box box-primary">
+<div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data lapangan</h3>
-    </div>
-
-    <div class="box-body">
-        
-         <table id="data_lapangan" class="table table-bordered">
+        <h3 class="box-title">Data Table With Full Features</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
          <thead>
             <tr>
                 <th style="width: 10px">#</th>

@@ -128,6 +128,11 @@ class Booking extends App_controller {
 		}
 
 		$data["title"] = "Info";
+		
+		
+		$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
+		$this->registerScript('js/plugins/datatables/datatables.bootstrap.js');
+		$this->registerCss('css/dataTables/dataTables.bootstrap.css');
 		$this->registerScript('js/page/booking.js');
 
 		$data['booking'] = $this->booking_model->getBookingTodayById($id_member);

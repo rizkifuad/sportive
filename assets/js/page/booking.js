@@ -9,4 +9,6 @@ $(document).ready(function(){
 	    showMeridian : false
   	});
 
+  	$("#data_lapangan").dataTable();
+
 });
