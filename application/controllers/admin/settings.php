@@ -51,6 +51,10 @@ class settings extends App_controller {
 		}
 
 		$data["title"] = "Jadwal";
+		$this->registerScript('js/page/jadwal.js');
+		$this->registerScript('js/plugins/timepicker/bootstrap-timepicker.min.js');
+		$this->registerCss('css/timepicker/bootstrap-timepicker.min.css');
+		$this->registerCss('css/page/jadwal.css');
 
 		$content = $this->load->view('admin/settings/jadwal', $data, true);
 		$this->render($content);
