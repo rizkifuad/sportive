@@ -175,6 +175,26 @@ class Home extends MY_controller {
 	public function cek_jadwal(){
 
 	}
+
+
+
+	public function paket_harga(){
+		$data["title"] = "Registrasi Pemilik";
+		$this->registerCss("css/table_pricing.css");
+
+		$content       = $this->load->view("home/paket_harga",$data,true);
+
+		$this->render($content);
+	}
+
+	public function join_now(){
+		$data["title"] = "Bergabung bersama kami";
+
+		$content = $this->load->view("home/join_now",$data,true);
+		$this->render($content);
+
+
+	}
 }
 
 /* End of file home.php */
