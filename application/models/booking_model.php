@@ -73,6 +73,7 @@ class Booking_model extends CI_Model {
 		$this->db->where('status !=', 3);
 		$this->db->like('jadwal', $date);
 		$this->db->join('lapangan', 'booking.id_lapangan = lapangan.id_lapangan', 'left');
+		$this->db->order_by('jadwal','asc'); 
 
 		$query = $this->db->get();
 		$result = $query->result();

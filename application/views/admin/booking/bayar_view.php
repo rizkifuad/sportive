@@ -33,7 +33,7 @@
                     <td><?=$data->nama_lapangan?></td>
                     <td><?=$data->nama?></td>
                     <td><?=$data->telp?></td>
-                    <td><?=$data->jadwal?></td>
+                    <td><?=substr($data->jadwal, 11)?></td>
                     <td><?=$data->durasi?></td>
                     <td><?=$data->jml_uang?></td>
                     <td><?=$pelunasan?></td>
@@ -44,7 +44,7 @@
                 else:
             ?>
                 <tr>
-                    <td colspan="4" align="center">Tidak ada data</td>
+                    <td colspan="10" align="center">Tidak ada data</td>
                 </tr>
             <?php
                 endif;
