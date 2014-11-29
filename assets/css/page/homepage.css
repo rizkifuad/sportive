@@ -145,3 +145,11 @@ a:hover{
         display: none;
     }
 }
+.wrap_a{
+	position: absolute;
+	top: 32px;
+	right: 63px;
+}
+td.hd{
+	background: #ededed;
+}

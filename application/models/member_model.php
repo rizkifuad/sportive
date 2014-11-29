@@ -77,7 +77,7 @@ class Member_model extends CI_Model {
         	$jadwal['hari']      = $i;
         	$jadwal['jam_buka']  = "08:00:00";
         	$jadwal['jam_tutup ']= "20:00:00";
-        	$jadwal['status']    = 0;
+        	$jadwal['status']    = 1;
         	$jadwal['id_member'] = $insert_id;
         	$this->db->insert('jadwal', $jadwal);
         }
@@ -108,7 +108,7 @@ class Member_model extends CI_Model {
 			$this->db->where("nama_tempat like '%{$nama}%'");
 
 		$query = $this->db->get();
-		
+
 		// echo $this->db->last_query();
 		return $query->result();
 	}

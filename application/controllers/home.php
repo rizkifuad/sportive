@@ -256,8 +256,8 @@ class Home extends MY_controller {
 		}
 		$data["provinsi"]     = $this->wilayah_model->getProvinsi();
 		$data["kota"]         = $this->wilayah_model->getKotaByProvinsi($data["sel_provinsi"]);
-		$data["sportcenter"] = $this->member_model->find_sportcenter($search,$nama_sportcenter);
-		$data["title"]       = "Cari sportcenter";
+		$data["sportcenter"]  = $this->member_model->find_sportcenter($search,$nama_sportcenter);
+		$data["title"]        = "Cari sportcenter";
 		// U::pre_test($data);
 		$content = $this->load->view("home/cari_sportcenter",$data,true);
 
@@ -269,6 +269,21 @@ class Home extends MY_controller {
 		$id_member = $this->uri->segment(3);
 		echo $id_member;
 	}
+
+	public function cek_booking(){
+		$this->load->model("booking_model");
+		$data["title"] = "Cek reservasi";
+		$data["token"] = "";
+		if($this->input->get("token")){
+			$search = array();
+			$data["token"]     = $this->input->get('token');
+			$data["data_book"] = $this->booking_model->getBookingByToken($data["token"]);
+			
+		}
+		$content = $this->load->view("home/cek_booking",$data,true);
+		$this->render($content);
+	}	
+
 }
 
 /* End of file home.php */

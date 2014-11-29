@@ -126,7 +126,7 @@ class jadwal_model extends CI_Model {
 	        	$jadwal['hari']      = $i;
 	        	$jadwal['jam_buka']  = "08:00:00";
 	        	$jadwal['jam_tutup ']= "20:00:00";
-	        	$jadwal['status']    = 0;
+	        	$jadwal['status']    = 1;
 	        	$jadwal['id_member'] = $id_member;
 	        	$this->db->insert('jadwal', $jadwal);
 	        }

@@ -21,9 +21,13 @@
 		background: #ededed;
 		padding:20px;
 	}
+	.detail_lapangan{
+		margin-left: 20px;
+	}
 </style>
 <div id="sportcenter_wrap" class="row">
 <h2>Data sportcenter</h2>
+<hr>
 <div class="box-search col-md-3">
 	<form role="form"  method="get" action="<?=base_url("home/cari_sportcenter")?>">
 		<div class="form-group">
@@ -82,22 +86,23 @@
 		</div>
 	</form>
 </div>
-<div class="col-md-5">
+<div class="col-md-9">
 <?php
 	if(count($sportcenter) == 0 ){
 		echo "Data tidak ditemukan";
 	}
 ?>
 <?php foreach ($sportcenter as $key => $sport) : ?>
-<div class="row">
-<div id="item_sportcenter" >
+
+<div id="item_sportcenter" class="row" >
 	<h4><a href="<?php echo base_url("home/sportcenter/".$sport->id_member) ?>"><?php echo $sport->nama_tempat ?></a></h4>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-2">
 			<img src="<?php echo U::asset_url("img/home/img-lapangan.jpg"); ?>" class="img-sport" width="150">
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-8 detail_lapangan">
 			<p>
+				<strong>Harga</strong>: <?php echo $sport->harga_per_jam ?><br>
 				<strong>Alamat</strong>: <?php echo $sport->alamat_lapangan ?>,<br>
 				<strong>&nbsp;</strong><span class="white">:</span> <?php echo $sport->nama_kota ?><br>
 				<strong>&nbsp;</strong><span class="white">:</span> <?php echo $sport->nama_provinsi ?><br>
@@ -105,10 +110,10 @@
 			</p>
 
 		</div>
-	</div>
+	
 
 </div>
-</div>
+
 </div>
 <?php endforeach; ?>
 </div>
