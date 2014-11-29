@@ -18,9 +18,10 @@ $(document).ready(function(){
 			data: {"tanggal":tanggal}
 		}).done(function(data){
 			$("#overlay").hide();
-			
-			$.each( data.jadwal, function( key, value ) {
-			  
+
+			$.each( data.schedule, function( key, value ) {
+				console.log(value.jam_buka);
+			  	
 			});
 		});
 	});

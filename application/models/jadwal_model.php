@@ -40,6 +40,22 @@ class jadwal_model extends CI_Model {
 		return $result;
 
 	}
+	/**
+	 * Get hari jadwal berdasarkan id member
+	 */
+	public function getJadwalByHari($hari,$id_member){
+		$this->db->select('*');
+		$this->db->from('jadwal');
+		$this->db->where('hari', $hari);
+		$this->db->where('id_member',$id_member);
+		$this->db->where('status',1);
+
+		$query = $this->db->get();
+		$result = $query->result();
+
+		return $result[0];
+
+	}
 
 	/**
 	 * simpan jadwal

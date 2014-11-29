@@ -23,6 +23,13 @@ class Booking extends App_controller {
 	public function cek_jadwal(){
 		$data["title"] = "Info";
 
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
+		$this->load->model('lapangan_model');
+
 		$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
         $this->registerScript('js/plugins/datatables/dataTables.bootstrap.js');
 		$this->registerScript('js/page/app-checkJadwal.js');
@@ -30,11 +37,14 @@ class Booking extends App_controller {
 
 		$this->registerCss('css/dataTables/dataTables.bootstrap.css');
 		$this->registerCss('css/datepicker/datepicker35.css');
-		
-		$this->load->model('jadwal_model');
-		$this->load->model('lapangan_model');
 
-		$nama_lapangan = $this->lapangan_model->
+		$nama_lapangan = $this->lapangan_model->getLapanganByMember($id_member);
+		
+		//menampilkan list lapangan untuk table header
+		foreach ($nama_lapangan as $key => $value) {
+			$data['lapangan'][$key] = $value->nama_lapangan;
+
+		}
 
 		$content = $this->load->view('admin/booking/checkJadwal_view', $data, true);
 		$this->render($content);
@@ -43,7 +53,7 @@ class Booking extends App_controller {
 	public function checking(){
 		$this->load->model('booking_model');
 		$this->load->model('lapangan_model');
-
+		$this->load->model('jadwal_model');
 
 		if($this->session->userdata('logged_in')){
 			$session_data = $this->session->userdata('logged_in');
@@ -52,6 +62,59 @@ class Booking extends App_controller {
 
 		$tanggal = $this->input->post("tanggal");
 		$info['jadwal'] = $this->booking_model->checkJadwal($tanggal,$id_member);
+
+		$nama_lapangan = $this->lapangan_model->getLapanganByMember($id_member);
+		
+		foreach ($nama_lapangan as $key => $value) {
+			$data['lapangan'][$key] = $value->nama_lapangan;
+		}
+		
+
+		$date = date("l");
+		
+		switch ($date) {
+			case 'Sunday':
+				$today = 0;
+				break;
+			case 'Monday':
+				$today = 1;
+				break;
+			case 'Tuesday':
+				$today = 2;
+				break;
+			case 'Wednesday':
+				$today = 3;
+				break;
+			case 'Thursday':
+				$today = 4;
+				break;
+			case 'Friday':
+				$today = 5;
+				break;
+			case 'Saturday':
+				$today = 6;
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+		$jadwal = $this->jadwal_model->getJadwalByHari($today,$id_member);
+		$schedule = array();
+		foreach ($jadwal as $key => $value) {
+			// echo json_encode($value);
+			$schedule[$key] = new stdclass();
+			$schedule[$key]->hari = $value["hari"];
+			$schedule[$key]->jam_buka = $value["jam_buka"];
+			$schedule[$key]->jam_tutup = $value["jam_tutup"];
+			$schedule[$key]->status = $value["status"];
+			
+			// $data['lapangan'][$key]->jam_buka = $value["jam_buka"];
+			// $data['lapangan'][$key]->jam_tutup = $value["jam_tutup"];
+		}
+		$info['schedule'] = $schedule;
+
+
 		foreach ($info['jadwal'] as $key => $value) {
 			$nama_lapangan = $this->lapangan_model->getLapanganById($value->id_lapangan);
 			$info["jadwal"][$key]->nama_lapangan = $nama_lapangan[0];

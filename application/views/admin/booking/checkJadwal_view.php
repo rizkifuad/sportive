@@ -1,7 +1,5 @@
 <div class="box box-primary">
-	<div id="overlay" style="display:hide;margin-top:-100px;">
-		<img id="img-loading" src="<?=base_url()?>assets/img/ajax-loader.gif" alt="Loading" />
-	</div>
+	
     <div class="box-header">
         <h3 class="box-title">Check Jadwal Lapangan</h3>
     </div><!-- /.box-header -->
@@ -15,17 +13,24 @@
     <table id="list_jadwal" class="table table-bordered table-striped">
          <thead>
             <tr>
-                <th style="width: 10px">#</th>
-                <th>Jam</th>
-                <th>Lapangan 1</th>
-                <th>Lapangan 2</th>
+            	<th>Jam</th>
+                <?php
+	                if($lapangan) :
+	                    foreach ($lapangan as $key => $value) :
+	            ?>
+	                    <th class="id_booking"><?=$value?></th>
+	            <?php endforeach;
+	            		endif;
+	            ?>
             </tr>
         </thead>
         <tbody>
     		<tr>
-    			<td colspan="10" align="center">Tidak ada data</td>
+    			<td colspan="10" align="center">Tidak ada data, Pilih tanggal terlebih dahulu</td>
     		</tr>
         </tbody>
     </table>
 </div><!-- /.box -->
-
+<div id="overlay" style="display:hide;margin-top:-100px;">
+		<img id="img-loading" src="<?=base_url()?>assets/img/ajax-loader.gif" alt="Loading" />
+	</div>
