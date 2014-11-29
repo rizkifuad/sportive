@@ -23,9 +23,23 @@ class jadwal_model extends CI_Model {
 		$result = $query->result();
 
 		return $result[0];
-
 	}
 
+
+	/**
+	 * set jadwal untuk semua hari
+	 */
+	public function getSemuaJadwal($id_member){
+		$this->db->select("*");
+		$this->db->from("jadwal");
+		$this->db->where("id_member",$id_member);
+
+		$query = $this->db->get();
+		$result = $query->result_array();
+
+		return $result;
+
+	}
 
 	/**
 	 * simpan jadwal
@@ -47,8 +61,9 @@ class jadwal_model extends CI_Model {
 	/**
 	 * update data jadwal
 	 */
-	public function updateJadwal($id,$data){
-		$this->db->where('id_jadwal', $id);
+	public function updateJadwal($data, $hari, $id_member){
+		$this->db->where('id_member', $id_member);
+		$this->db->where('hari', $hari);
 		$this->db->update('jadwal', $data);
 
 		if($this->db->affected_rows() > 0)

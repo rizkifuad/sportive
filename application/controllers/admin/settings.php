@@ -20,6 +20,7 @@ class settings extends App_controller {
 
 		$this->load->model('Member_Model');
 		$this->load->model('Wilayah_Model');
+		$this->load->model('Jadwal_Model');
 
 	}
 
@@ -51,6 +52,7 @@ class settings extends App_controller {
 		}
 
 		$data["title"] = "Jadwal";
+		$data['jadwal'] = $this->Jadwal_Model->getSemuaJadwal($id_member);
 		$this->registerScript('js/page/jadwal.js');
 		$this->registerScript('js/plugins/timepicker/bootstrap-timepicker.min.js');
 		$this->registerCss('css/timepicker/bootstrap-timepicker.min.css');
@@ -59,6 +61,46 @@ class settings extends App_controller {
 		$content = $this->load->view('admin/settings/jadwal', $data, true);
 		$this->render($content);
 
+	}
+
+	/**
+	 * halaman pengaturan untuk udpate jadwal
+	 */
+
+	public function updateJadwal(){
+		if($this->session->userdata('logged_in'))
+		{
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+
+			$checkbox = $this->input->post('checboxHari');
+			$jam_buka = $this->input->post('jam_buka');
+			$jam_tutup = $this->input->post('jam_tutup');
+			$i = 0;
+
+			var_dump($checkbox);
+			var_dump($jam_buka);
+			var_dump($jam_tutup);
+			$index = 0;
+			while($i < 7)
+			{
+				if(in_array($i, $checkbox))
+				{
+					$data['status'] = 1;
+					$data['jam_buka'] = $jam_buka[$index];
+					$data['jam_tutup'] = $jam_tutup[$index];
+					$this->Jadwal_Model->updateJadwal($data, $i, $id_member);
+					$index++;
+				}
+				else
+				{
+					$data['status'] = 0;
+					$this->Jadwal_Model->updateJadwal($data, $i, $id_member);
+				}
+				$i++;
+			}
+			redirect('admin/settings/jadwal');
+		}
 	}
 
 
