@@ -75,6 +75,11 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
+                                 <li>
+                                     <a href="<?=base_url("admin/booking/cek_booking")?>">
+                                        <i class="fa fa-angle-double-right"></i> <span>Cek Booking</span>
+                                    </a>
+                                </li>
                                 <li>
                                      <a href="<?=base_url("admin/booking/cek_jadwal")?>">
                                         <i class="fa fa-angle-double-right"></i> <span>Cek Jadwal</span>
