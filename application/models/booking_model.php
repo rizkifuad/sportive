@@ -49,6 +49,16 @@ class Booking_model extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function getBookingByLapanganIdTanggal2($id_lapangan,$tanggal,$id_member){
+		$this->db->select("*");
+		$this->db->from("booking");
+		$this->db->where("id_lapangan",$id_lapangan);
+		$this->db->where("id_member",$id_member);
+		$this->db->like("jadwal", $tanggal);
+		$query = $this->db->get();
+		return $query->result();
+	}
 	
 
 	public function getBookingByToken($token,$id_member=NULL){
