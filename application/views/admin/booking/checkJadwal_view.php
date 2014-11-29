@@ -15,8 +15,8 @@
             <tr>
             	<th>Jam</th>
                 <?php
-	                if($lapangan) :
-	                    foreach ($lapangan as $key => $value) :
+	                if($nama_lapangan) :
+	                    foreach ($nama_lapangan as $key => $value) :
 	            ?>
 	                    <th class="id_booking"><?=$value?></th>
 	            <?php endforeach;

@@ -43,7 +43,7 @@ class Booking extends App_controller {
 		
 		//menampilkan list lapangan untuk table header
 		foreach ($nama_lapangan as $key => $value) {
-			$data['lapangan'][$key] = $value->nama_lapangan;
+			$data['nama_lapangan'][$key] = $value->nama_lapangan;
 
 		}
 
@@ -62,64 +62,68 @@ class Booking extends App_controller {
 		}
 		// $this->registerHeadScript('js/plugins/moment.min.js');
 		$tanggal = $this->input->post("tanggal");
-		$info['jadwal'] = $this->booking_model->checkJadwal($tanggal,$id_member);
+		$book = array();
+		$durasi = array();
+		$info_lapangan = $this->lapangan_model->getLapanganByMember($id_member);
+		foreach ($info_lapangan as $key => $value) {
+			$id_lapangan[$key] = $this->booking_model->getBookingByLapanganIdTanggal($value->id_lapangan,$tanggal);	
+			$book[$key]=array();	
+			$durasi[$key] = array();
+		}
+		foreach ($id_lapangan as $key => $value) {
+			foreach ($value as $word => $data) {
+				$book[$key][$word] = $data->jadwal;
+				$durasi[$key][$word] = $data->durasi;
 
-		$nama_lapangan = $this->lapangan_model->getLapanganByMember($id_member);
-		
-		foreach ($nama_lapangan as $key => $value) {
-			$data['lapangan'][$key] = $value->nama_lapangan;
+			}
 		}
-		
-		
-		$day = date('d', strtotime($tanggal));
-		$month = date('m', strtotime($tanggal));
-		$year = date("Y",strtotime($tanggal));
-		$date = date("l",mktime(0, 0, 0, $month, $day, $year));
-		
-		switch ($date) {
-			case 'Sunday':
-				$today = 0;
-				break;
-			case 'Monday':
-				$today = 1;
-				break;
-			case 'Tuesday':
-				$today = 2;
-				break;
-			case 'Wednesday':
-				$today = 3;
-				break;
-			case 'Thursday':
-				$today = 4;
-				break;
-			case 'Friday':
-				$today = 5;
-				break;
-			case 'Saturday':
-				$today = 6;
-				break;
-			
-			default:
-				# code...
-				break;
-		}
-		$jadwal = $this->jadwal_model->getJadwalByHari($today,$id_member);
-		// print_r($jadwal);
-		
-		$schedule = new stdClass();
-		$schedule->jam_buka=$jadwal->jam_buka;
-		$schedule->jam_tutup= $jadwal->jam_tutup;
-		$info['schedule'] = $schedule;
-		
-		// U::pre_test($schedule);
-		// $info['schedule'] = $schedule;
-		
-		// print_r($info['schedule']);
 
-		foreach ($info['jadwal'] as $key => $value) {
-			$nama_lapangan = $this->lapangan_model->getLapanganById($value->id_lapangan);
-			$info["jadwal"][$key]->nama_lapangan = $nama_lapangan[0];
+		// echo json_encode($durasi);
+		// echo json_encode($id_lapangan);
+		// $info['booking'] = $this->booking_model->getBookingByMember($id_member);
+		// foreach ($info['booking'] as $key => $value) {
+		// 	array_push($book, $value->jadwal);
+		// 	array_push($durasi, $value->durasi);
+		// }
+		
+		
+		
+		// $hari_start = explode(" ",$arr);
+		echo "test before";
+		$start = $tanggal." 08:00:00";
+		$end   =  $tanggal." 22:00:00";
+
+		$jml =  ( strtotime($end) - strtotime($start) )/3600;
+		echo $jml;
+		$current = strtotime($start);
+		
+		
+		for ($lapangan_id=0; $lapangan_id < count($book); $lapangan_id++) { 
+			$i = 0;
+			while ($i <= $jml) {
+				$_current = strtotime("+$i hours",$current);
+				$time = date('Y-m-d H:i:s',$_current);
+				$jam = date('H:i:s',$_current);
+				$info['current'][$i]=$jam;
+
+				echo "test";
+				if(!in_array($time, $book[$lapangan_id])){
+					echo date('H:i:s',$_current)."<br>";
+				}else{
+					echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+					$index = array_search($time, $book[$lapangan_id]);
+
+					for($j=1;$j<$durasi[$index];$j++){
+						$_cur = strtotime("+$j hours",$_current);
+						echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+
+						$i++;
+					}
+				}
+				$i++;
+			}
 		}
+		
 		echo json_encode($info);
 	}
 
