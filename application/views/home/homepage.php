@@ -33,6 +33,15 @@
 								</select>
 
 							</div>
+
+							<div class="form-group">
+								<label>Pilih jenis sportcenter</label>
+								<select class="form-control" name="type">
+									<option value="1">Futsal</option>
+									<option value="2">Badminton</option>
+								</select>
+
+							</div>
 							
 							<div class="form-group">
 								<label>Masukkan nama sportcenter (optional)</label>

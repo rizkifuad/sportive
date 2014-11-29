@@ -188,6 +188,7 @@ class Home extends MY_controller {
 		if($this->input->post("submit")) {			
 			$data["membership"] 		  = $this->input->post("id_membership");
 		    $data["nama_tempat"] 		  = $this->input->post("nama_sport");
+		    $data["type"] 		  		  = $this->input->post("type");
 		    $data["alamat_lapangan"] 	  = $this->input->post("alamat_sport");
 		    $data["provinsi"] 			  = $this->input->post("prov_sport");
 		    $data["kota"] 				  = $this->input->post("kota_sport");
@@ -234,6 +235,8 @@ class Home extends MY_controller {
 			$search["provinsi"]      = $this->input->get('provinsi');
 		if($this->input->get('kota'))
 			$search["kota"]          = $this->input->get('kota');
+		if($this->input->get('type'))
+			$search["kota"]          = $this->input->get('type');
 
 		$nama_sportcenter = null;
 		if($this->input->get('nama_sportcenter'))

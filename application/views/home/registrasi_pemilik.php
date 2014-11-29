@@ -23,6 +23,14 @@
                         <textarea name="alamat_sport" id="alamat_sport" class="form-control" rows="3" placeholder="Masukkan alamat lapangan"></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Pilih jenis sportcenter</label>
+                        <select class="form-control" name="type">
+                            <option value="1">Futsal</option>
+                            <option value="2">Badminton</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
                         <label for="chosen_provinsi">Provinsi</label>
                         <select name="prov_sport" class="form-control" id="chosen_provinsi">
                             <?php foreach($provinsi as $prov) {
