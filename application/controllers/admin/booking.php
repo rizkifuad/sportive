@@ -21,7 +21,42 @@ class Booking extends App_controller {
 	 * Cek jadwal booking
 	 */
 	public function cek_jadwal(){
+		$data["title"] = "Info";
 
+		$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
+        $this->registerScript('js/plugins/datatables/dataTables.bootstrap.js');
+		$this->registerScript('js/page/app-checkJadwal.js');
+		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
+
+		$this->registerCss('css/dataTables/dataTables.bootstrap.css');
+		$this->registerCss('css/datepicker/datepicker35.css');
+		
+		$this->load->model('jadwal_model');
+		$this->load->model('lapangan_model');
+
+		$nama_lapangan = $this->lapangan_model->
+
+		$content = $this->load->view('admin/booking/checkJadwal_view', $data, true);
+		$this->render($content);
+	}
+
+	public function checking(){
+		$this->load->model('booking_model');
+		$this->load->model('lapangan_model');
+
+
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
+		$tanggal = $this->input->post("tanggal");
+		$info['jadwal'] = $this->booking_model->checkJadwal($tanggal,$id_member);
+		foreach ($info['jadwal'] as $key => $value) {
+			$nama_lapangan = $this->lapangan_model->getLapanganById($value->id_lapangan);
+			$info["jadwal"][$key]->nama_lapangan = $nama_lapangan[0];
+		}
+		echo json_encode($info);
 	}
 
 	/**

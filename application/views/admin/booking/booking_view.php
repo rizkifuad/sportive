@@ -1,6 +1,6 @@
 <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Quick Example</h3>
+        <h3 class="box-title">Booking Lapangan</h3>
     </div><!-- /.box-header -->
     <!-- form penyimpanan booking -->
     <form role="form" method="post" action="<?=base_url("admin/booking/save_booking")?>">
