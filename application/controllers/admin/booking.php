@@ -16,7 +16,23 @@ class Booking extends App_controller {
 			redirect("home/login");
 		}
 	}
-
+	public function cek_booking(){
+		$this->load->model("booking_model");
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+		$data["title"] = "Cek reservasi";
+		$data["token"] = "";
+		if($this->input->get("token")){
+			$search = array();
+			$data["token"]     = $this->input->get('token');
+			$data["data_book"] = $this->booking_model->getBookingByToken($data["token"],$id_member);
+			
+		}
+		$content = $this->load->view("admin/booking/cek_booking",$data,true);
+		$this->render($content);
+	}
 	/**
 	 * Cek jadwal booking
 	 */
