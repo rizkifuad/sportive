@@ -23,6 +23,10 @@ U::loadScripts($javascripts);
         <div class="container">
             <a href="<?=base_url()?>" class="logo"><?=$title?> - Sportive.</a>
             <a href="<?=base_url("home/join_now")?>" class="btn-join">Join Now</a>
+            <div class="wrap_a">
+                <a href="<?=base_url("home/login")?>" class="">Sign in</a> |
+                <a href="<?=base_url("home/cek_booking")?>" class="">Cek booking</a>
+            </div>
         </div>
 
     </div>

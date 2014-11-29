@@ -24,7 +24,7 @@ class Booking_model extends CI_Model {
 	 * get booking by id booking dan id_member
 	 */
 	public function getBooking($id_booking, $id_member){
-		$this->db->select('nama,telp,token,type,jadwal,durasi,jumlah_uang,status,id_lapangan');
+		$this->db->select('nama,telp,token,type,jadwal,durasi,jml_uang,status,id_lapangan');
 		$this->db->from('booking');
 		$this->db->where('id_booking', $id_booking);
 		$this->db->where('id_member', $id_member);
@@ -32,6 +32,21 @@ class Booking_model extends CI_Model {
 		$query = $this->db->get();
 		$result = $query->result();
 		return $result[0];
+	}
+
+	public function getBookingByToken($token){
+		$this->db->select('nama,telp,token,b.type,jadwal,durasi,jml_uang,b.status,nama_lapangan,nama_tempat');
+		$this->db->from('booking b');
+		$this->db->join('members m','m.id_member=b.id_member');
+		$this->db->join('lapangan l','l.id_lapangan=b.id_lapangan');
+		
+		$this->db->where('token', $token);
+		
+		$query = $this->db->get();
+		$result = $query->result();
+		if($result)
+			return $result[0];
+		return false;
 	}
 
 	/**
