@@ -22,7 +22,11 @@ class Manajemen extends App_controller {
 	 * tampilkan grafik penjualan
 	 */
 	public function grafik(){
-		
+		if($this->session->userdata('logged_in'))
+		{
+			$session_data = $this->session->userdata('logged_in');
+			$this->registerScript('js/plugins/highcharts.js');
+		}
 	}
 
 	/**

@@ -9,7 +9,6 @@ $(document).ready(function(){
 
     $('.checkboxHari').on('ifChecked', function(event){
       $(this).parent().parent().parent().find("input[type=text]").prop('disabled', false);
-      
     });
 
      $('.checkboxHari').on('ifUnchecked', function(event){

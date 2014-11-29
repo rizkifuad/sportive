@@ -1,5 +1,10 @@
 $(document).ready(function(){
-	$("#data_lapangan").dataTable();
+	$("#data_lapangan").dataTable(
+		"oLanguage": {
+                     "sEmptyTable":     "My Custom Message On Empty Table"
+                 } 
+	);
+	
 
 	$(".pelunasan").click(function(){
 		var nama_lapangan = $(this).parent().parent().find(".nama_lapangan").text();

@@ -3,6 +3,7 @@
         <h3 class="box-title">Daftar Jadwal</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
+        <?= form_open('admin/settings/updateJadwal'); ?>
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -11,119 +12,43 @@
                     <th class="jam">Jam Buka</th>
                     <th class="jam">Jam Tutup</th>
                 </tr>
+                <?php 
+                $hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu");
+                foreach($jadwal as $data) { 
+                    $id_hari = $data["hari"];
+                    if($data['status'] == 1)
+                    {
+                        $isChecked = 'checked';
+                        $isDisabled = '';
+                    }
+                    else
+                    {
+                        $isChecked = '';
+                        $isDisabled = 'disabled';
+                    }
+                ?>
                 <tr>
                     <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
+                        <input value="<?= $id_hari; ?>" name="checboxHari[]" type="checkbox" class="checkboxHari" <?= $isChecked; ?>>
                     </td>
-                    <td class="jam">Senin</td>
+                    <td class="jam"><?= $hari[$id_hari]; ?></td>
                     <td>
                         <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam senin" name="jam" placeholder="Jam Booking" disabled>
+                            <input value="<?= $data['jam_buka']; ?>" type="text" class="form-control timepicker jam <?= $hari[$id_hari]; ?>" name="jam_buka[]" placeholder="Jam Booking" <?= $isDisabled; ?>>
                         </div>
                     </td>
                     <td>
                         <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam senin" name="jam" placeholder="Jam Booking" disabled>
+                            <input value="<?= $data['jam_tutup']; ?>" type="text" class="form-control timepicker jam <?= $hari[$id_hari]; ?>" name="jam_tutup[]" placeholder="Jam Booking" <?= $isDisabled; ?>>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
-                    </td>
-                    <td class="jam">Selasa</td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam selasa" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam selasa" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
-                    </td>
-                    <td class="jam">Rabu</td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam rabu" name="jam" placeholder="Jam Booking" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam rabu" name="jam" placeholder="Jam Booking" disabled>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
-                    </td>
-                    <td class="jam">Kamis</td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input id="kamis" type="text" class="form-control timepicker jam kamis" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input id="kamis" type="text" class="form-control timepicker jam kamis" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
-                    </td>
-                    <td class="jam">Jum'at</td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam jumat" name="jam" placeholder="Jam Booking" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam jumat" name="jam" placeholder="Jam Booking" disabled>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
-                    </td>
-                    <td class="jam">Sabtu</td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam sabtu" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam sabtu" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" class="checkboxHari" value="option1">
-                    </td>
-                    <td class="jam">Minggu</td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam minggu" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" class="form-control timepicker jam minggu" name="jam" placeholder="" disabled>
-                        </div>
-                    </td>
-                </tr>
+                <? } ?>
             </tbody>
         </table>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+        <?= form_close(); ?>
     </div><!-- /.box-body -->
 </div>
