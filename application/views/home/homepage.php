@@ -61,9 +61,30 @@
 			</div>
 
 			<div class="col-md-7">
-				
-
-				<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+				<div class="box-find">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Selamat+Datang+di+Sportive" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Cari+Sport+Center" alt="Second slide">
+                        </div>
+                        <div class="item">
+                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Reservasi+Online" alt="Third slide">
+                        </div>
+                        <div class="item">
+                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Mudah,+Cepat,+Efisien" alt="Fourth slide">
+                        </div>
+                    </div>
+                </div>
+            </div>
 			</div>
 		</div>
 
