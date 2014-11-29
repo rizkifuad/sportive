@@ -15,8 +15,8 @@ body {
 
 .pricing-table {
     float: left;
-    width: 305px;
-    margin: 50px 14px 10px 14px;
+    width: 100%;
+    margin: 50px 0 ;
     background: #f8f8f8;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;

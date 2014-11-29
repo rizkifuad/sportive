@@ -9,7 +9,7 @@
 
 	</div>
 	<div class="col-md-2">
-		<div style="min-height:250px;border-left:1px solid #e0e0e0;margin:0 auto;width:10px;">&nbsp;</div>
+		<div class="separator" style="min-height:250px;border-left:1px solid #e0e0e0;margin:0 auto;width:10px;">&nbsp;</div>
 	</div>
 	<div class="col-md-5">
 		<br>

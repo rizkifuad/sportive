@@ -1,14 +1,12 @@
 $(document).ready(function(){
-	var $chosen_provinsi = $(".chosen_provinsi");
-	var $chosen_kota     = $(".chosen_kota");
+	var $chosen_provinsi  = $("#chosen_provinsi");
+	var $chosen_kota      = $("#chosen_kota");
 
-	$chosen_provinsi.chosen();
 	$chosen_kota.chosen();
-
+	$chosen_provinsi.chosen();
 	var url = $("#base_url").val();
-
 	$chosen_provinsi.on('change', function(evt, params) {
-		
+	
 		var id_provinsi = $chosen_provinsi.val();
 		var kota = $.ajax({
 			url    : url + "api/getKotaByProvinsi",

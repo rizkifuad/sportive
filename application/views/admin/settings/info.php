@@ -37,7 +37,7 @@
     	    </div>
     	    <div class="form-group">
     	        <label for="telp_sport">Telepon Sport Center</label>
-    	        <input name="telp_sport" type="text" class="form-control" id="telp_sport" placeholder="Masukkan nama lapangan" value="<?= $all_data['telp_lapangan'] ?>">
+    	        <input name="telp_sport" type="text" class="form-control" id="telp_sport" placeholder="Masukkan telepon lapangan" value="<?= $all_data['telp_lapangan'] ?>">
     	    </div>
     	</div>
    	 	<div class="box-footer">

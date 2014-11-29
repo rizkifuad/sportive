@@ -7,7 +7,7 @@
 					</div>
 					<div class="box-body">
 						<br>
-						<form role="form" method="get" action="<?=base_url("home/find_sportcenter")?>">
+						<form role="form" method="get" action="<?=base_url("home/cari_sportcenter")?>">
 							<div class="form-group">
 								<label>Pilih provinsi</label>
 								<select class="form-control chosen_provinsi" name="provinsi">
@@ -33,10 +33,19 @@
 								</select>
 
 							</div>
+
+							<div class="form-group">
+								<label>Pilih jenis sportcenter</label>
+								<select class="form-control" name="type">
+									<option value="1">Futsal</option>
+									<option value="2">Badminton</option>
+								</select>
+
+							</div>
 							
 							<div class="form-group">
 								<label>Masukkan nama sportcenter (optional)</label>
-								<input name="sporcenter" type="text" class="form-control" placeholder="Masukkan nama sportcenter(optional)"> 
+								<input name="nama_sportcenter" type="text" class="form-control" placeholder="Masukkan nama sportcenter(optional)"> 
 
 							</div>
 
@@ -53,6 +62,8 @@
 
 			<div class="col-md-7">
 				
+
+				<p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 			</div>
 		</div>
 
