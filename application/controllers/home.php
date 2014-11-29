@@ -231,12 +231,13 @@ class Home extends MY_controller {
 	public function cari_sportcenter(){
 		$this->load->model("member_model");
 		$search = array();
-		if($this->input->get('provinsi'))
-			$search["provinsi"]      = $this->input->get('provinsi');
+		if($this->input->get('provinsi')){
+			$search["provinsi"]      = $data["sel_provinsi"] =  $this->input->get('provinsi');
+		}
 		if($this->input->get('kota'))
-			$search["kota"]          = $this->input->get('kota');
+			$search["kota"]          = $data["sel_kota"] =  $this->input->get('kota');
 		if($this->input->get('type'))
-			$search["kota"]          = $this->input->get('type');
+			$search["kota"]          = $data["sel_type"] = $this->input->get('type');
 
 		$nama_sportcenter = null;
 		if($this->input->get('nama_sportcenter'))
@@ -248,6 +249,11 @@ class Home extends MY_controller {
 
 		$this->render($content);
 
+	}
+
+	public function sportcenter(){
+		$id_member = $this->uri->segment(3);
+		echo $id_member;
 	}
 }
 

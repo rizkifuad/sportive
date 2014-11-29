@@ -98,7 +98,7 @@ class Member_model extends CI_Model {
     	$this->db->update('members', $data);
 	}
 
-	public function find_sportcenter($arr){
+	public function find_sportcenter($arr,$nama=NULL){
 		$this->db->select("*");
 		$this->db->from("members m");
 		$this->db->join("provinsi p","m.provinsi=p.id_provinsi");
