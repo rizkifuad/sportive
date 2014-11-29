@@ -104,13 +104,17 @@ class Booking extends App_controller {
 				break;
 		}
 		$jadwal = $this->jadwal_model->getJadwalByHari($today,$id_member);
-		$schedule = array();
-			// echo json_encode($value);
-		print_r($jadwal);
-		$info['schedule']->jam_buka = $jadwal->jam_buka;
+		// print_r($jadwal);
+		
+		$schedule = new stdClass();
+		$schedule->jam_buka=$jadwal->jam_buka;
+		$schedule->jam_tutup= $jadwal->jam_tutup;
+		$info['schedule'] = $schedule;
+		
+		// U::pre_test($schedule);
 		// $info['schedule'] = $schedule;
 		
-		print_r($info['schedule']);
+		// print_r($info['schedule']);
 
 		foreach ($info['jadwal'] as $key => $value) {
 			$nama_lapangan = $this->lapangan_model->getLapanganById($value->id_lapangan);
