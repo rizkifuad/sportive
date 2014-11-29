@@ -43,7 +43,7 @@ class Booking extends App_controller {
 			$session_data = $this->session->userdata('logged_in');
 			$id_member = $session_data->id_member;
 		}
-		$data["current"] =false;
+		$data["book"] =false;
 		$this->load->model('lapangan_model');
 		// $this->registerHeadScript('js/plugins/moment.min.js');
 
@@ -97,11 +97,13 @@ class Booking extends App_controller {
 		$end   = $tanggal." 22:00:00";
 
 		if($lapangan):
-$data['book'] = array();
+
+		$data["book"] = array();
 		foreach ($lapangan as $key => $lap) {
 
 			$booking = $this->booking_model->getBookingByLapanganIdTanggal2($lap->id_lapangan,$tanggal,$id_member);
-			// $info[''] $lap->nama_lapangan."<br>";
+			// echo $lap->nama_lapangan."<br>";
+			$data["book"][$key]["nama_lapangan"] = $lap->nama_lapangan;
 			/* get jadwal */
 			$book   = array();
 			$durasi = array();
@@ -115,23 +117,22 @@ $data['book'] = array();
 
 			$current = strtotime($start);
 			$i = 0;
-			$data['book'][$key] = array();
+			$data["book"][$key]["jadwal"] = array();
 			while ($i <= $jml) {
-				$new = array();
 				$_current = strtotime("+$i hours",$current);
 				$time = date('Y-m-d H:i:s',$_current);
-				$data['current'][$i] = date('H:i:s',$_current);
+
 				if(!in_array($time, $book)){
-					$data['book'][$key][$i] = date('H:i:s',$_current);
+					// echo date('H:i:s',$_current)."<br>";
+					array_push($data["book"][$key]["jadwal"], date('H:i:s',$_current));
 				}else{
 					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
-					// $data['booked'][$i] = date("H:i:s",$_current);
 					$index = array_search($time, $book);
 
 					for($j=1;$j<$durasi[$index];$j++){
 						$_cur = strtotime("+$i hours",$current);
 						// echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
-						$data['durasi'][$i] = date("H:i:s",$_current);
+
 						$i++;
 					}
 				}
@@ -140,6 +141,7 @@ $data['book'] = array();
 
 		}
 		endif;
+
 		
 		$content = $this->load->view('admin/booking/checkJadwal_view', $data, true);
 		$this->render($content);

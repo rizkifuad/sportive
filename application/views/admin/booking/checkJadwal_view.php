@@ -12,39 +12,28 @@
 		    </div>
 	    </form>
     </div>
-    <table id="list_jadwal" class="table table-bordered table-striped">
-         <thead>
-            <tr>
-            	<th>Jam</th>
-                <?php
-	                if($nama_lapangan) :
-	                    foreach ($nama_lapangan as $key => $value) :
-	            ?>
-	                    <th class="id_booking"><?=$value?></th>
-	            <?php endforeach;
-	            		endif;
-	            ?>
-            </tr>
-        </thead>
-        <tbody>
-    		<?php
-    			if($current):
-    				foreach ($current as $key => $value):
-    		?>
-    		<tr>
-	    		<td><?=$value?></td>
-	    		<?php
-	    			foreach ($book as $key => $value) :
-	    		?>
-    			<td><?=$book?></td>
-    		</tr>
-    		<?php
-    			endforeach;
-    			endforeach;
-    			endif;
-    		?>
-        </tbody>
-    </table>
+    <?php if($book) :  ?>
+<table id="list_jadwal" class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Nama Lapangan</th>
+			<th>Jam Booking</th>
+		</tr>
+	</thead>
+	<?php foreach ($book as $key => $data) : ?>
+
+	<tr>
+		<td><?php echo $data["nama_lapangan"] ?></td>
+		<td>
+			<?php foreach ($data["jadwal"] as $key => $sch) : ?>
+				<button class="btn"><?php echo $sch; ?></button>
+			<?php endforeach; ?>
+
+		</td>
+	</tr>
+	<?php endforeach; ?>
+</table>
+<?php endif; ?>
 </div><!-- /.box -->
 <div id="overlay" style="display:hide;margin-top:-100px;">
 		<img id="img-loading" src="<?=base_url()?>assets/img/ajax-loader.gif" alt="Loading" />
