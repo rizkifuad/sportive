@@ -8,44 +8,29 @@ $(document).ready(function(){
 
 	
 
-	$("#search_jadwal").click(function(){
-		$("#overlay").show();
-		var tanggal = $("#tanggal").val();
-		console.log(tanggal);
-		$.ajax({
-			url:base_url+"admin/booking/checking",
-			type: "POST",
-			dataType: "JSON",
-			data: {"tanggal":tanggal}
-		}).done(function(data){
-			$("#overlay").hide();
+	// $("#search_jadwal").click(function(){
+	// 	$("#overlay").show();
+	// 	var tanggal = $("#tanggal").val();
+	// 	console.log(tanggal);
+	// 	$.ajax({
+	// 		url:base_url+"admin/booking/checking",
+	// 		type: "POST",
+	// 		dataType: "JSON",
+	// 		data: {"tanggal":tanggal}
+	// 	}).done(function(data){
+	// 		$("#overlay").hide();
 
-			console.log(data);
-			// var atribut;
-			$.each(data.current, function( index, valuecurrent ) {
-				$.each(data.book, function( index, value ) {
-					
-					if(!value){
-						atribut = "red";
-					}
-					else{
-						atribut = "none";
-					}
-				  	tablet.row.add( [
-			            valuecurrent,
-			            "<button type='button' background='"+atribut+"'>Halo</button>",
-			            
-			        ] ).draw();
-					    // console.log(value);
-
-				});
-			});
+	// 		console.log(data);
+	// 		// var atribut;
+	// 		$.each(data.time, function( index, value ) {
+	// 			console.log(value);
+	// 		});
 			
 			
-			// table.row.add([
-	  //           jam +':00'
-	  //       ]).draw();
+	// 		// table.row.add([
+	//   //           jam +':00'
+	//   //       ]).draw();
 
-		});
-	});
+	// 	});
+	//});
 });

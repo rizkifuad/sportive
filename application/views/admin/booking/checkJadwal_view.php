@@ -4,11 +4,13 @@
         <h3 class="box-title">Check Jadwal Lapangan</h3>
     </div><!-- /.box-header -->
     <div class="box-body">
-	    <div class="form-group">
-	       		<label for="tanggal" >Cari Jadwal : </label>
-	        	<input class="span2"id="tanggal" size="22" type="text" >
-	        	<button type="button" id="search_jadwal" class="btn btn-primary btn-sm">Search</button>
-	    </div>
+	    <form role="form" action="<?=base_url("admin/booking/checking")?>" method="post">
+		    <div class="form-group">
+		       		<label for="tanggal" >Cari Jadwal : </label>
+		        	<input class="span2"id="tanggal" size="22" type="text" name="tanggal" >
+		        	<button type="submit" id="search_jadwal" class="btn btn-primary btn-sm">Search</button>
+		    </div>
+	    </form>
     </div>
     <table id="list_jadwal" class="table table-bordered table-striped">
          <thead>
@@ -25,7 +27,18 @@
             </tr>
         </thead>
         <tbody>
-    		
+    		<?php
+    			if($current!=false):
+    				foreach ($current as $key => $value):
+    		?>
+    		<tr>
+	    		<td><?=$value?></td>
+    			
+    		</tr>
+    		<?php
+    			endforeach;
+    			endif;
+    		?>
         </tbody>
     </table>
 </div><!-- /.box -->

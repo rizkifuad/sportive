@@ -269,14 +269,14 @@ class Home extends MY_controller {
 		$this->load->model("booking_model");
 		$this->load->model("lapangan_model");
 		$id_member = $this->uri->segment(3);
-		$tanggal   = "2014-11-26";
+		$tanggal   = "2014-11-30";
 		$_tanggal  = strtotime($tanggal." 00:00");
 		$num_week  = date('w',  $_tanggal);
 
 		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
 		// print_r($lapangan);
-		$start = "2014-11-26 08:00:00";
-		$end   = "2014-11-26 22:00:00";
+		$start = "2014-11-30 08:00:00";
+		$end   = "2014-11-30 22:00:00";
 
 		if($lapangan):
 		foreach ($lapangan as $key => $lap) {
