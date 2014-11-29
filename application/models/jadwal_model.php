@@ -40,6 +40,22 @@ class jadwal_model extends CI_Model {
 		return $result;
 
 	}
+	/**
+	 * Get hari jadwal berdasarkan id member
+	 */
+	public function getJadwalByHari($hari,$id_member){
+		$this->db->select('*');
+		$this->db->from('jadwal');
+		$this->db->where('hari', $hari);
+		$this->db->where('id_member',$id_member);
+		$this->db->where('status',1);
+
+		$query = $this->db->get();
+		$result = $query->result();
+
+		return $result[0];
+
+	}
 
 	/**
 	 * simpan jadwal
@@ -90,6 +106,31 @@ class jadwal_model extends CI_Model {
 		else{
 			return false;
 		}
+	}
+
+	public function fixJadwal($id_member){
+		$this->db->select("id_jadwal");
+		$this->db->from("jadwal");
+		$this->db->where("id_member",$id_member);
+
+		$query = $this->db->get();
+
+		if($query->num_rows() == 7){
+			
+		}else{
+			$this->db->where("id_member",$id_member);
+			$this->db->delete("jadwal");
+
+			for($i=0;$i<7;$i++){
+	        	$jadwal = array();
+	        	$jadwal['hari']      = $i;
+	        	$jadwal['jam_buka']  = "08:00:00";
+	        	$jadwal['jam_tutup ']= "20:00:00";
+	        	$jadwal['status']    = 1;
+	        	$jadwal['id_member'] = $id_member;
+	        	$this->db->insert('jadwal', $jadwal);
+	        }
+	    }
 	}
 
 }

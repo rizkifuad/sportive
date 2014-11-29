@@ -51,6 +51,8 @@ class settings extends App_controller {
 			$id_member = $session_data->id_member;
 		}
 
+		$this->Jadwal_Model->fixJadwal($id_member);
+
 		$data["title"] = "Jadwal";
 		$data['jadwal'] = $this->Jadwal_Model->getSemuaJadwal($id_member);
 		$this->registerScript('js/page/jadwal.js');

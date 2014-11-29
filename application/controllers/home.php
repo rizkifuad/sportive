@@ -230,6 +230,17 @@ class Home extends MY_controller {
 
 	public function cari_sportcenter(){
 		$this->load->model("member_model");
+		$this->load->model("wilayah_model");
+		
+		$this->registerCss("css/chosen/chosen.css");
+		$this->registerScript("js/plugins/chosen/chosen.jquery.js");
+		$this->registerScript("js/page/homepage.js");
+
+		$data["sel_provinsi"] = 16;
+		$data["sel_kota"] = null;
+		$data["sel_type"] = 1;
+		$data["sel_nama_sportcenter"] = "";
+
 		$search = array();
 		if($this->input->get('provinsi')){
 			$search["provinsi"]      = $data["sel_provinsi"] =  $this->input->get('provinsi');
@@ -237,13 +248,16 @@ class Home extends MY_controller {
 		if($this->input->get('kota'))
 			$search["kota"]          = $data["sel_kota"] =  $this->input->get('kota');
 		if($this->input->get('type'))
-			$search["kota"]          = $data["sel_type"] = $this->input->get('type');
+			$search["type"]          = $data["sel_type"] = $this->input->get('type');
 
 		$nama_sportcenter = null;
-		if($this->input->get('nama_sportcenter'))
-			$nama_sportcenter   = $this->input->get('nama_sportcenter');
-		$data["sportcenter"] = $this->member_model->find_sportcenter($search,$nama_sportcenter);
-		$data["title"]       = "Cari sportcenter";
+		if($this->input->get('nama_sportcenter')){
+			$nama_sportcenter   = $data["sel_nama_sportcenter"]  = $this->input->get('nama_sportcenter');
+		}
+		$data["provinsi"]     = $this->wilayah_model->getProvinsi();
+		$data["kota"]         = $this->wilayah_model->getKotaByProvinsi($data["sel_provinsi"]);
+		$data["sportcenter"]  = $this->member_model->find_sportcenter($search,$nama_sportcenter);
+		$data["title"]        = "Cari sportcenter";
 		// U::pre_test($data);
 		$content = $this->load->view("home/cari_sportcenter",$data,true);
 
@@ -253,8 +267,61 @@ class Home extends MY_controller {
 
 	public function sportcenter(){
 		$id_member = $this->uri->segment(3);
-		echo $id_member;
+		$book = array(
+			"2014-11-29 10:00:00",
+			"2014-11-29 15:00:00",
+			"2014-11-29 17:00:00"
+			);
+		$durasi = array(
+			1,
+			1,
+			4
+
+			);
+
+		$start = "2014-11-29 08:00:00";
+		$end   = "2014-11-29 22:00:00";
+
+		$jml =  ( strtotime($end) - strtotime($start) )/3600;
+
+		$current = strtotime($start);
+		$i = 0;
+		while ($i <= $jml) {
+			$_current = strtotime("+$i hours",$current);
+			$time = date('Y-m-d H:i:s',$_current);
+
+
+			if(!in_array($time, $book)){
+				echo date('H:i:s',$_current)."<br>";
+			}else{
+				echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+				$index = array_search($time, $book);
+
+				for($j=1;$j<$durasi[$index];$j++){
+					$_cur = strtotime("+$i hours",$current);
+					echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+
+					$i++;
+				}
+			}
+			$i++;
+		}
 	}
+
+	public function cek_booking(){
+		$this->load->model("booking_model");
+		$data["title"] = "Cek reservasi";
+		$data["token"] = "";
+		if($this->input->get("token")){
+			$search = array();
+			$data["token"]     = $this->input->get('token');
+			$data["data_book"] = $this->booking_model->getBookingByToken($data["token"]);
+			
+		}
+		$content = $this->load->view("home/cek_booking",$data,true);
+		$this->render($content);
+	}	
+
 }
 
 /* End of file home.php */
