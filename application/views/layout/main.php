@@ -102,18 +102,6 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                     <a href="<?=base_url("admin/manajemen/grafik")?>">
-                                        <i class="fa fa-angle-double-right"></i> <span>Grafik</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                     <a href="<?=base_url("admin/manajemen/keuangan")?>">
-                                        <i class="fa fa-angle-double-right"></i> <span>Keuangan</span>
-                                    </a>
-                                </li>
-                                
-                                 <li>
                                      <a href="<?=base_url("admin/manajemen/laporan")?>">
                                         <i class="fa fa-angle-double-right"></i> <span>Laporan</span>
                                     </a>

@@ -19,28 +19,25 @@ class Manajemen extends App_controller {
 	}
 
 	/**
-	 * tampilkan grafik penjualan
-	 */
-	public function grafik(){
-		if($this->session->userdata('logged_in'))
-		{
-			$session_data = $this->session->userdata('logged_in');
-			$this->registerScript('js/plugins/highcharts.js');
-		}
-	}
-
-	/**
-	 * tampilkan data keuangan dan booking
-	 */
-	public function keuangan(){
-
-	}
-
-	/**
 	 * Halaman untuk laporan
 	 */
 	public function laporan(){
-		
+		$this->load->model('Manajemen_Model');
+		if($this->session->userdata('logged_in'))
+		{
+			$data['title'] = 'Manajemen';
+			$session_data = $this->session->userdata('logged_in');
+
+
+			$data['laporan_harian'] = $this->Manajemen_Model->getJadwalHarian($session_data->id_member);
+			$data['thead'] = "<th>Jadwal</th><th>Durasi</th><th>Nama</th><th>Lapangan</th><th>Status</th>";
+			// $this->registerScript('js/plugins/highcharts.js');
+			$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
+			$this->registerCss('css/datatables/dataTables.bootstrap.css');
+
+			$content = $this->load->view('admin/manajemen/manajemen', $data, true);
+			$this->render($content);
+		}
 	}
 	
 }
