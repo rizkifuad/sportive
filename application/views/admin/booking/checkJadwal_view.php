@@ -25,9 +25,7 @@
             </tr>
         </thead>
         <tbody>
-    		<tr>
-    			<td colspan="10" align="center">Tidak ada data, Pilih tanggal terlebih dahulu</td>
-    		</tr>
+    		
         </tbody>
     </table>
 </div><!-- /.box -->
