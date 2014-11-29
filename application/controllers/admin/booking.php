@@ -105,12 +105,12 @@ class Booking extends App_controller {
 		
 		
 		// $hari_start = explode(" ",$arr);
-		echo "test before";
+		
 		$start = $tanggal." 08:00:00";
 		$end   =  $tanggal." 22:00:00";
 
 		$jml =  ( strtotime($end) - strtotime($start) )/3600;
-		echo $jml;
+		
 		$current = strtotime($start);
 		
 		
@@ -122,16 +122,19 @@ class Booking extends App_controller {
 				$jam = date('H:i:s',$_current);
 				$info['current'][$i]=$jam;
 
-				echo "test";
+				
 				if(!in_array($time, $book[$lapangan_id])){
-					echo date('H:i:s',$_current)."<br>";
+					// $info['book'][$lapangan_id] = true;
+					
+					// echo date('H:i:s',$_current)."<br>";
 				}else{
-					echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
 					$index = array_search($time, $book[$lapangan_id]);
-
+					// $info['book'] = false;
 					for($j=1;$j<$durasi[$index];$j++){
 						$_cur = strtotime("+$j hours",$_current);
-						echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+						// $info['book'][$lapangan_id] = false;
+						// echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
 
 						$i++;
 					}

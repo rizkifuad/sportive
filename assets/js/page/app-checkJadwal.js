@@ -20,15 +20,25 @@ $(document).ready(function(){
 		}).done(function(data){
 			$("#overlay").hide();
 
-			// console.log(data);
-			
-			$.each(data.current, function( index, value ) {
-			  	tablet.row.add( [
-		            value,
-		            "<button type='button'>Halo</button>",
-		            
-		        ] ).draw();
-		    // console.log(value);
+			console.log(data);
+			// var atribut;
+			$.each(data.current, function( index, valuecurrent ) {
+				$.each(data.book, function( index, value ) {
+					
+					if(!value){
+						atribut = "red";
+					}
+					else{
+						atribut = "none";
+					}
+				  	tablet.row.add( [
+			            valuecurrent,
+			            "<button type='button' background='"+atribut+"'>Halo</button>",
+			            
+			        ] ).draw();
+					    // console.log(value);
+
+				});
 			});
 			
 			
