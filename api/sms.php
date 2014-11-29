@@ -4,6 +4,7 @@ include_once "./library/OAuthStore.php";
 include_once "./library/OAuthRequester.php";
 
 define("CONSUMER_KEY", "bestapp58");
+
 define("CONSUMER_SECRET", "57IRU");
 define("OAUTH_HOST", "http://sandbox.appprime.net");
 define("REQUEST_TOKEN_URL", OAUTH_HOST . "/TemanDev/rest/RequestToken/");
@@ -12,6 +13,7 @@ define("ACCESS_TOKEN_URL", OAUTH_HOST . "/TemanDev/rest/AccessToken/");
 //  Init the OAuthStore
 $options = array(
 	'consumer_key' => CONSUMER_KEY,
+
 	'consumer_secret' => CONSUMER_SECRET,
 	'server_uri' => OAUTH_HOST,
 	'request_token_uri' => REQUEST_TOKEN_URL,
@@ -42,7 +44,7 @@ request token = ' . $tokenResultParams["token"];
 	// make the docs request.
 	$urlAPI = OAUTH_HOST . '/TemanDev/rest/sendSMS/';
 	$opt = array(CURLOPT_HTTPHEADER => array('Content-Type: application/json'));
-	$body = '{"sendSMS":{"pinRequestID":"1","pinDestAddress":"6285735324610","pinMessageBody":"halo munir","pinShortCode":"9147"}}';
+	$body = '{"sendSMS":{"pinRequestID":"1","pinDestAddress":"6285735324610","pinMessageBody":"hai halo munir","pinShortCode":"9147"}}';
 
 	$request = new OAuthRequester($urlAPI, 'POST', $tokenResultParams, $body);
 	echo 'execute api..
