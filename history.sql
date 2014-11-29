@@ -687,3 +687,7 @@ ALTER TABLE  `booking` ADD  `durasi` INT( 2 ) NOT NULL AFTER  `jadwal` ;
 
 #add status to jadwal
 ALTER TABLE  `jadwal` ADD  `status` INT( 1 ) NOT NULL AFTER  `jam_tutup` ;
+
+
+#tambah tipe sportcenter
+ALTER TABLE  `members` ADD  `type` INT( 1 ) NOT NULL ;
