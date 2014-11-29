@@ -72,7 +72,15 @@ class Member_model extends CI_Model {
 	public function register($data){
 		$this->db->insert('members', $data);
         $insert_id = $this->db->insert_id();
-
+        for($i=0;$i<7;$i++){
+        	$jadwal = array();
+        	$jadwal['hari']      = $i;
+        	$jadwal['jam_buka']  = "08:00:00";
+        	$jadwal['jam_tutup ']= "20:00:00";
+        	$jadwal['status']    = 0;
+        	$jadwal['id_member'] = $insert_id;
+        	$this->db->insert('jadwal', $jadwal);
+        }
         return $insert_id;
 	}
 
@@ -92,7 +100,9 @@ class Member_model extends CI_Model {
 
 	public function find_sportcenter($arr){
 		$this->db->select("*");
-		$this->db->from("members");
+		$this->db->from("members m");
+		$this->db->join("provinsi p","m.provinsi=p.id_provinsi");
+		$this->db->join("kota k","m.kota=k.id_kota");
 		$this->db->where($arr);
 
 		$query = $this->db->get();

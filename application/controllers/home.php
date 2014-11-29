@@ -201,7 +201,7 @@ class Home extends MY_controller {
 		    
 		}
 		
-		$md_password = md5($password);
+		$data["password"] = md5($password);
 		$register = $this->member_model->register($data);
 		if($register){
 			redirect("home/login");
@@ -229,7 +229,7 @@ class Home extends MY_controller {
 
 	public function cari_sportcenter(){
 		$this->load->model("member_model");
-
+		$search = array();
 		if($this->input->get('provinsi'))
 			$search["provinsi"]      = $this->input->get('provinsi');
 		if($this->input->get('kota'))
