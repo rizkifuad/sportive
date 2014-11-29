@@ -29,12 +29,12 @@ class Booking extends App_controller {
 		}
 
 		$this->load->model('lapangan_model');
+		// $this->registerHeadScript('js/plugins/moment.min.js');
 
 		$this->registerScript('js/plugins/datatables/jquery.dataTables.js');
         $this->registerScript('js/plugins/datatables/dataTables.bootstrap.js');
 		$this->registerScript('js/page/app-checkJadwal.js');
 		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
-		$this->registerScript('js/plugins/moment.min.js');
 
 		$this->registerCss('css/dataTables/dataTables.bootstrap.css');
 		$this->registerCss('css/datepicker/datepicker35.css');
@@ -60,7 +60,7 @@ class Booking extends App_controller {
 			$session_data = $this->session->userdata('logged_in');
 			$id_member = $session_data->id_member;
 		}
-
+		// $this->registerHeadScript('js/plugins/moment.min.js');
 		$tanggal = $this->input->post("tanggal");
 		$info['jadwal'] = $this->booking_model->checkJadwal($tanggal,$id_member);
 

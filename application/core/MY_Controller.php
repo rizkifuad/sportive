@@ -79,6 +79,7 @@ class App_Controller extends MY_controller {
          bootstrap wysihtml5 - text editor
          Theme style */
 	protected $javascripts = array(
+		'js/plugins/moment.min.js',
 		'js/jquery.js',
         'js/jquery2-1-1.min.js',
         'bootstrap/js/bootstrap.min.js',
