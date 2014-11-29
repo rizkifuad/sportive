@@ -61,7 +61,7 @@
 			</div>
 
 			<div class="col-md-7">
-				<div class="box-find">
+				
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -71,19 +71,19 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Selamat+Datang+di+Sportive" alt="First slide">
+                            <img src="http://placehold.it/900x616/d1d1d1/a0a0a0&amp;text=Selamat+Datang+di+Sportive" alt="First slide">
                         </div>
                         <div class="item">
-                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Cari+Sport+Center" alt="Second slide">
+                            <img src="http://placehold.it/900x616/d1d1d1/a0a0a0&amp;text=Cari+Sport+Center" alt="Second slide">
                         </div>
                         <div class="item">
-                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Reservasi+Online" alt="Third slide">
+                            <img src="http://placehold.it/900x616/d1d1d1/a0a0a0&amp;text=Reservasi+Online" alt="Third slide">
                         </div>
                         <div class="item">
-                            <img src="http://placehold.it/900x616/e14100/ffffff&amp;text=Mudah,+Cepat,+Efisien" alt="Fourth slide">
+                            <img src="http://placehold.it/900x616/d1d1d1/a0a0a0&amp;text=Mudah,+Cepat,+Efisien" alt="Fourth slide">
                         </div>
                     </div>
-                </div>
+                
             </div>
 			</div>
 		</div>

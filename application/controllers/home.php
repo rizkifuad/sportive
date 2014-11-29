@@ -272,17 +272,20 @@ class Home extends MY_controller {
 		$tanggal   = "2014-11-26";
 		$_tanggal  = strtotime($tanggal." 00:00");
 		$num_week  = date('w',  $_tanggal);
-
+		$data["title"] = "Spoercenter";
 		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
 		// print_r($lapangan);
 		$start = "2014-11-26 08:00:00";
 		$end   = "2014-11-26 22:00:00";
 
 		if($lapangan):
+
+		$data["book"] = array();
 		foreach ($lapangan as $key => $lap) {
 
 			$booking = $this->booking_model->getBookingByLapanganIdTanggal2($lap->id_lapangan,$tanggal,$id_member);
-			echo $lap->nama_lapangan."<br>";
+			// echo $lap->nama_lapangan."<br>";
+			$data["book"][$key]["nama_lapangan"] = $lap->nama_lapangan;
 			/* get jadwal */
 			$book   = array();
 			$durasi = array();
@@ -296,20 +299,21 @@ class Home extends MY_controller {
 
 			$current = strtotime($start);
 			$i = 0;
+			$data["book"][$key]["jadwal"] = array();
 			while ($i <= $jml) {
 				$_current = strtotime("+$i hours",$current);
 				$time = date('Y-m-d H:i:s',$_current);
 
-
 				if(!in_array($time, $book)){
-					echo date('H:i:s',$_current)."<br>";
+					// echo date('H:i:s',$_current)."<br>";
+					array_push($data["book"][$key]["jadwal"], date('H:i:s',$_current));
 				}else{
-					echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
 					$index = array_search($time, $book);
 
 					for($j=1;$j<$durasi[$index];$j++){
 						$_cur = strtotime("+$i hours",$current);
-						echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+						// echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
 
 						$i++;
 					}
@@ -319,6 +323,10 @@ class Home extends MY_controller {
 
 		}
 		endif;
+
+		$content = $this->load->view("home/book_sportcenter",$data,true);
+		$this->render($content);
+
 	}
 
 	public function cek_booking(){
