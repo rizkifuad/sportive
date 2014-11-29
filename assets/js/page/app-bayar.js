@@ -1,9 +1,5 @@
 $(document).ready(function(){
-	$("#data_lapangan").dataTable(
-		"oLanguage": {
-                     "sEmptyTable":     "My Custom Message On Empty Table"
-                 } 
-	);
+	$("#data_lapangan").dataTable();
 	
 
 	$(".pelunasan").click(function(){

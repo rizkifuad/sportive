@@ -34,6 +34,7 @@ class Booking extends App_controller {
         $this->registerScript('js/plugins/datatables/dataTables.bootstrap.js');
 		$this->registerScript('js/page/app-checkJadwal.js');
 		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
+		$this->registerScript('js/plugins/moment.min.js');
 
 		$this->registerCss('css/dataTables/dataTables.bootstrap.css');
 		$this->registerCss('css/datepicker/datepicker35.css');
@@ -69,8 +70,11 @@ class Booking extends App_controller {
 			$data['lapangan'][$key] = $value->nama_lapangan;
 		}
 		
-
-		$date = date("l");
+		
+		$day = date('d', strtotime($tanggal));
+		$month = date('m', strtotime($tanggal));
+		$year = date("Y",strtotime($tanggal));
+		$date = date("l",mktime(0, 0, 0, $month, $day, $year));
 		
 		switch ($date) {
 			case 'Sunday':
@@ -101,19 +105,12 @@ class Booking extends App_controller {
 		}
 		$jadwal = $this->jadwal_model->getJadwalByHari($today,$id_member);
 		$schedule = array();
-		foreach ($jadwal as $key => $value) {
 			// echo json_encode($value);
-			$schedule[$key] = new stdclass();
-			$schedule[$key]->hari = $value["hari"];
-			$schedule[$key]->jam_buka = $value["jam_buka"];
-			$schedule[$key]->jam_tutup = $value["jam_tutup"];
-			$schedule[$key]->status = $value["status"];
-			
-			// $data['lapangan'][$key]->jam_buka = $value["jam_buka"];
-			// $data['lapangan'][$key]->jam_tutup = $value["jam_tutup"];
-		}
-		$info['schedule'] = $schedule;
-
+		print_r($jadwal);
+		$info['schedule']->jam_buka = $jadwal->jam_buka;
+		// $info['schedule'] = $schedule;
+		
+		print_r($info['schedule']);
 
 		foreach ($info['jadwal'] as $key => $value) {
 			$nama_lapangan = $this->lapangan_model->getLapanganById($value->id_lapangan);
