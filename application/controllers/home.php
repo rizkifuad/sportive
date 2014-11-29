@@ -267,7 +267,45 @@ class Home extends MY_controller {
 
 	public function sportcenter(){
 		$id_member = $this->uri->segment(3);
-		echo $id_member;
+		$book = array(
+			"2014-11-29 10:00:00",
+			"2014-11-29 15:00:00",
+			"2014-11-29 17:00:00"
+			);
+		$durasi = array(
+			1,
+			1,
+			4
+
+			);
+
+		$start = "2014-11-29 08:00:00";
+		$end   = "2014-11-29 22:00:00";
+
+		$jml =  ( strtotime($end) - strtotime($start) )/3600;
+
+		$current = strtotime($start);
+		$i = 0;
+		while ($i <= $jml) {
+			$_current = strtotime("+$i hours",$current);
+			$time = date('Y-m-d H:i:s',$_current);
+
+
+			if(!in_array($time, $book)){
+				echo date('H:i:s',$_current)."<br>";
+			}else{
+				echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+				$index = array_search($time, $book);
+
+				for($j=1;$j<$durasi[$index];$j++){
+					$_cur = strtotime("+$i hours",$current);
+					echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+
+					$i++;
+				}
+			}
+			$i++;
+		}
 	}
 
 	public function cek_booking(){
