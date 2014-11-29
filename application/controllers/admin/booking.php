@@ -97,7 +97,7 @@ class Booking extends App_controller {
 		$end   = $tanggal." 22:00:00";
 
 		if($lapangan):
-
+$data['book'] = array();
 		foreach ($lapangan as $key => $lap) {
 
 			$booking = $this->booking_model->getBookingByLapanganIdTanggal2($lap->id_lapangan,$tanggal,$id_member);
@@ -115,15 +115,17 @@ class Booking extends App_controller {
 
 			$current = strtotime($start);
 			$i = 0;
+			$data['book'][$key] = array();
 			while ($i <= $jml) {
+				$new = array();
 				$_current = strtotime("+$i hours",$current);
 				$time = date('Y-m-d H:i:s',$_current);
-
+				$data['current'][$i] = date('H:i:s',$_current);
 				if(!in_array($time, $book)){
-					$data['current'][$i] = date('H:i:s',$_current)."<br>";
+					$data['book'][$key][$i] = date('H:i:s',$_current);
 				}else{
 					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
-					$data['booked'][$i] = date("H:i:s",$_current);
+					// $data['booked'][$i] = date("H:i:s",$_current);
 					$index = array_search($time, $book);
 
 					for($j=1;$j<$durasi[$index];$j++){

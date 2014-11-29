@@ -28,14 +28,18 @@
         </thead>
         <tbody>
     		<?php
-    			if($current!=false):
+    			if($current):
     				foreach ($current as $key => $value):
     		?>
     		<tr>
 	    		<td><?=$value?></td>
-    			
+	    		<?php
+	    			foreach ($book as $key => $value) :
+	    		?>
+    			<td><?=$book?></td>
     		</tr>
     		<?php
+    			endforeach;
     			endforeach;
     			endif;
     		?>
