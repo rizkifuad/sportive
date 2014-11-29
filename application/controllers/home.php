@@ -277,7 +277,7 @@ class Home extends MY_controller {
 		// print_r($lapangan);
 		$start = "2014-11-26 08:00:00";
 		$end   = "2014-11-26 22:00:00";
-
+		$data["book"] = false;
 		if($lapangan):
 
 		$data["book"] = array();
