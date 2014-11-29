@@ -18,11 +18,8 @@ $(document).ready(function(){
 			data: {"tanggal":tanggal}
 		}).done(function(data){
 			$("#overlay").hide();
-			console.log(data.schedule);
-			$.each( data.schedule, function( key, value ) {
-				console.log(value[0]);
-					
-			});
+			moment(data.schedule.jam_buka);
+			
 		});
 	});
 });
