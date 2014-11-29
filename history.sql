@@ -683,3 +683,7 @@ INSERT INTO `members` (`id_member`, `nama_pemilik`, `email`, `telp_pemilik`, `us
 #add durasi 
 
 ALTER TABLE  `booking` ADD  `durasi` INT( 2 ) NOT NULL AFTER  `jadwal` ;
+
+
+#add status to jadwal
+ALTER TABLE  `jadwal` ADD  `status` INT( 1 ) NOT NULL AFTER  `jam_tutup` ;
