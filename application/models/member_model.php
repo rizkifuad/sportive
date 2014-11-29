@@ -104,8 +104,11 @@ class Member_model extends CI_Model {
 		$this->db->join("provinsi p","m.provinsi=p.id_provinsi");
 		$this->db->join("kota k","m.kota=k.id_kota");
 		$this->db->where($arr);
+		if($nama!=NULL)
+			$this->db->where("nama_tempat like '%{$nama}%'");
 
 		$query = $this->db->get();
+		
 		// echo $this->db->last_query();
 		return $query->result();
 	}

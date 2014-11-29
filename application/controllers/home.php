@@ -230,6 +230,17 @@ class Home extends MY_controller {
 
 	public function cari_sportcenter(){
 		$this->load->model("member_model");
+		$this->load->model("wilayah_model");
+		
+		$this->registerCss("css/chosen/chosen.css");
+		$this->registerScript("js/plugins/chosen/chosen.jquery.js");
+		$this->registerScript("js/page/homepage.js");
+
+		$data["sel_provinsi"] = 16;
+		$data["sel_kota"] = null;
+		$data["sel_type"] = 1;
+		$data["sel_nama_sportcenter"] = "";
+
 		$search = array();
 		if($this->input->get('provinsi')){
 			$search["provinsi"]      = $data["sel_provinsi"] =  $this->input->get('provinsi');
@@ -237,11 +248,14 @@ class Home extends MY_controller {
 		if($this->input->get('kota'))
 			$search["kota"]          = $data["sel_kota"] =  $this->input->get('kota');
 		if($this->input->get('type'))
-			$search["kota"]          = $data["sel_type"] = $this->input->get('type');
+			$search["type"]          = $data["sel_type"] = $this->input->get('type');
 
 		$nama_sportcenter = null;
-		if($this->input->get('nama_sportcenter'))
-			$nama_sportcenter   = $this->input->get('nama_sportcenter');
+		if($this->input->get('nama_sportcenter')){
+			$nama_sportcenter   = $data["sel_nama_sportcenter"]  = $this->input->get('nama_sportcenter');
+		}
+		$data["provinsi"]     = $this->wilayah_model->getProvinsi();
+		$data["kota"]         = $this->wilayah_model->getKotaByProvinsi($data["sel_provinsi"]);
 		$data["sportcenter"] = $this->member_model->find_sportcenter($search,$nama_sportcenter);
 		$data["title"]       = "Cari sportcenter";
 		// U::pre_test($data);
