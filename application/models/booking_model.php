@@ -34,13 +34,43 @@ class Booking_model extends CI_Model {
 		return $result[0];
 	}
 
-	public function getBookingByToken($token){
+	public function getBookingByMember($id_member){
+		$this->db->select("*");
+		$this->db->from("booking");
+		$this->db->where("id_member",$id_member);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	public function getBookingByLapanganIdTanggal($id_lapangan,$tanggal){
+		$this->db->select("*");
+		$this->db->from("booking");
+		$this->db->where("id_lapangan",$id_lapangan);
+		$this->db->like("jadwal", $tanggal);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function getBookingByLapanganIdTanggal2($id_lapangan,$tanggal,$id_member){
+		$this->db->select("*");
+		$this->db->from("booking");
+		$this->db->where("id_lapangan",$id_lapangan);
+		$this->db->where("id_member",$id_member);
+		$this->db->like("jadwal", $tanggal);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	
+
+	public function getBookingByToken($token,$id_member=NULL){
+
 		$this->db->select('nama,telp,token,b.type,jadwal,durasi,jml_uang,b.status,nama_lapangan,nama_tempat');
 		$this->db->from('booking b');
 		$this->db->join('members m','m.id_member=b.id_member');
 		$this->db->join('lapangan l','l.id_lapangan=b.id_lapangan');
 		
 		$this->db->where('token', $token);
+		if($id_member!=NULL)
+			$this->db->where("b.id_member",$id_member);
 		
 		$query = $this->db->get();
 		$result = $query->result();

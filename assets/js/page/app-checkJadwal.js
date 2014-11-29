@@ -19,23 +19,18 @@ $(document).ready(function(){
 			data: {"tanggal":tanggal}
 		}).done(function(data){
 			$("#overlay").hide();
+
+			// console.log(data);
 			
-			var split = data.schedule.jam_buka.split(":");
-			var jam_buka = parseInt(split[0]);
-			var split2 = data.schedule.jam_tutup.split(":");
-			var jam_tutup = parseInt(split2[0]);
-			
-			for (var i = jam_buka; i <= jam_tutup; i++) {
-				if(i.toString().length==1){
-					i = "0"+i;
-				}
-				console.log("i:"+i);
-				console.log("jam_tutup:"+jam_tutup);
-				tablet.row.add( [
-		            i+":00" ,
+			$.each(data.current, function( index, value ) {
+			  	tablet.row.add( [
+		            value,
+		            "<button type='button'>Halo</button>",
 		            
 		        ] ).draw();
-			};
+		    // console.log(value);
+			});
+			
 			
 			// table.row.add([
 	  //           jam +':00'

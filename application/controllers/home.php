@@ -266,46 +266,59 @@ class Home extends MY_controller {
 	}
 
 	public function sportcenter(){
+		$this->load->model("booking_model");
+		$this->load->model("lapangan_model");
 		$id_member = $this->uri->segment(3);
-		$book = array(
-			"2014-11-29 10:00:00",
-			"2014-11-29 15:00:00",
-			"2014-11-29 17:00:00"
-			);
-		$durasi = array(
-			1,
-			1,
-			4
+		$tanggal   = "2014-11-26";
+		$_tanggal  = strtotime($tanggal." 00:00");
+		$num_week  = date('w',  $_tanggal);
 
-			);
+		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
+		// print_r($lapangan);
+		$start = "2014-11-26 08:00:00";
+		$end   = "2014-11-26 22:00:00";
 
-		$start = "2014-11-29 08:00:00";
-		$end   = "2014-11-29 22:00:00";
+		if($lapangan):
+		foreach ($lapangan as $key => $lap) {
 
-		$jml =  ( strtotime($end) - strtotime($start) )/3600;
-
-		$current = strtotime($start);
-		$i = 0;
-		while ($i <= $jml) {
-			$_current = strtotime("+$i hours",$current);
-			$time = date('Y-m-d H:i:s',$_current);
-
-
-			if(!in_array($time, $book)){
-				echo date('H:i:s',$_current)."<br>";
-			}else{
-				echo "<strong>".date('H:i:s',$_current)."</strong><br>";
-				$index = array_search($time, $book);
-
-				for($j=1;$j<$durasi[$index];$j++){
-					$_cur = strtotime("+$i hours",$current);
-					echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
-
-					$i++;
-				}
+			$booking = $this->booking_model->getBookingByLapanganIdTanggal2($lap->id_lapangan,$tanggal,$id_member);
+			echo $lap->nama_lapangan."<br>";
+			/* get jadwal */
+			$book   = array();
+			$durasi = array();
+			foreach ($booking as $key => $dat) {
+				array_push($book, $dat->jadwal);
+				array_push($durasi,$dat->durasi);
 			}
-			$i++;
+			
+
+			$jml =  ( strtotime($end) - strtotime($start) )/3600;
+
+			$current = strtotime($start);
+			$i = 0;
+			while ($i <= $jml) {
+				$_current = strtotime("+$i hours",$current);
+				$time = date('Y-m-d H:i:s',$_current);
+
+
+				if(!in_array($time, $book)){
+					echo date('H:i:s',$_current)."<br>";
+				}else{
+					echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+					$index = array_search($time, $book);
+
+					for($j=1;$j<$durasi[$index];$j++){
+						$_cur = strtotime("+$i hours",$current);
+						echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+
+						$i++;
+					}
+				}
+				$i++;
+			}
+
 		}
+		endif;
 	}
 
 	public function cek_booking(){
