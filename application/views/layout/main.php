@@ -64,11 +64,6 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <!-- Sidebar Kri berisi menu Content -->
                     <ul class="sidebar-menu">
-                        <li>
-                            <a href="<?=base_url("admin/main")?>">
-                                <i class="glyphicon glyphicon-home"></i> <span>Beranda</span>
-                            </a>
-                        </li>
                        <li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-calendar"></i> <span>Booking</span>

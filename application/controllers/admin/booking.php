@@ -43,7 +43,7 @@ class Booking extends App_controller {
 			$session_data = $this->session->userdata('logged_in');
 			$id_member = $session_data->id_member;
 		}
-
+		$data["book"] =false;
 		$this->load->model('lapangan_model');
 		// $this->registerHeadScript('js/plugins/moment.min.js');
 
@@ -68,6 +68,7 @@ class Booking extends App_controller {
 	}
 
 	public function checking(){
+		$data["title"] = "Info";
 		$this->load->model('booking_model');
 		$this->load->model('lapangan_model');
 		$this->load->model('jadwal_model');
@@ -76,71 +77,74 @@ class Booking extends App_controller {
 			$session_data = $this->session->userdata('logged_in');
 			$id_member = $session_data->id_member;
 		}
+
+		$nama_lapangan = $this->lapangan_model->getLapanganByMember($id_member);
+		
+		//menampilkan list lapangan untuk table header
+		foreach ($nama_lapangan as $key => $value) {
+			$data['nama_lapangan'][$key] = $value->nama_lapangan;
+
+		}
 		// $this->registerHeadScript('js/plugins/moment.min.js');
-		$tanggal = $this->input->post("tanggal");
-		$book = array();
-		$durasi = array();
-		$info_lapangan = $this->lapangan_model->getLapanganByMember($id_member);
-		foreach ($info_lapangan as $key => $value) {
-			$id_lapangan[$key] = $this->booking_model->getBookingByLapanganIdTanggal($value->id_lapangan,$tanggal);	
-			$book[$key]=array();	
-			$durasi[$key] = array();
-		}
-		foreach ($id_lapangan as $key => $value) {
-			foreach ($value as $word => $data) {
-				$book[$key][$word] = $data->jadwal;
-				$durasi[$key][$word] = $data->durasi;
-
-			}
-		}
-
-		// echo json_encode($durasi);
-		// echo json_encode($id_lapangan);
-		// $info['booking'] = $this->booking_model->getBookingByMember($id_member);
-		// foreach ($info['booking'] as $key => $value) {
-		// 	array_push($book, $value->jadwal);
-		// 	array_push($durasi, $value->durasi);
-		// }
-		
-		
+		$tanggal = $this->input->post("tanggal");		
 		
 		// $hari_start = explode(" ",$arr);
-		echo "test before";
+		$_tanggal  = strtotime($tanggal." 00:00");
+		$num_week  = date('w',  $_tanggal);
+		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
+		// print_r($lapangan);
 		$start = $tanggal." 08:00:00";
-		$end   =  $tanggal." 22:00:00";
+		$end   = $tanggal." 22:00:00";
 
-		$jml =  ( strtotime($end) - strtotime($start) )/3600;
-		echo $jml;
-		$current = strtotime($start);
-		
-		
-		for ($lapangan_id=0; $lapangan_id < count($book); $lapangan_id++) { 
+		if($lapangan):
+		$data['tanggal'] = $tanggal;
+		$data["book"] = array();
+		foreach ($lapangan as $key => $lap) {
+
+			$booking = $this->booking_model->getBookingByLapanganIdTanggal2($lap->id_lapangan,$tanggal,$id_member);
+			// echo $lap->nama_lapangan."<br>";
+			$data["book"][$key]["nama_lapangan"] = $lap->nama_lapangan;
+			/* get jadwal */
+			$book   = array();
+			$durasi = array();
+			foreach ($booking as $key => $dat) {
+				array_push($book, $dat->jadwal);
+				array_push($durasi,$dat->durasi);
+			}
+			
+
+			$jml =  ( strtotime($end) - strtotime($start) )/3600;
+
+			$current = strtotime($start);
 			$i = 0;
+			$data["book"][$key]["jadwal"] = array();
 			while ($i <= $jml) {
 				$_current = strtotime("+$i hours",$current);
 				$time = date('Y-m-d H:i:s',$_current);
-				$jam = date('H:i:s',$_current);
-				$info['current'][$i]=$jam;
 
-				echo "test";
-				if(!in_array($time, $book[$lapangan_id])){
-					echo date('H:i:s',$_current)."<br>";
+				if(!in_array($time, $book)){
+					// echo date('H:i:s',$_current)."<br>";
+					array_push($data["book"][$key]["jadwal"], date('H:i',$_current));
 				}else{
-					echo "<strong>".date('H:i:s',$_current)."</strong><br>";
-					$index = array_search($time, $book[$lapangan_id]);
+					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
+					$index = array_search($time, $book);
 
 					for($j=1;$j<$durasi[$index];$j++){
-						$_cur = strtotime("+$j hours",$_current);
-						echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
+						$_cur = strtotime("+$i hours",$current);
+						// echo "<strong>".date('H:i:s',$_cur)."</strong><br>";
 
 						$i++;
 					}
 				}
 				$i++;
 			}
+
 		}
+		endif;
+
 		
-		echo json_encode($info);
+		$content = $this->load->view('admin/booking/checkJadwal_view', $data, true);
+		$this->render($content);
 	}
 
 	/**
@@ -155,7 +159,9 @@ class Booking extends App_controller {
 			$session_data = $this->session->userdata('logged_in');
 			$id_member = $session_data->id_member;
 		}
-
+		$data['tanggal'] = $this->input->post('tanggal');
+		$data["nama_lapangan"] = $this->input->post('lapangan');
+		$data["jam"] = $this->input->post('book');
 		$data['lapangan'] = $this->lapangan_model->getLapanganByMember($id_member);
 		$data['dp'] = $this->member_model->getMemberById("uang_muka",$id_member);
 

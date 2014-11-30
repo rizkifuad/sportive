@@ -268,6 +268,7 @@ class Home extends MY_controller {
 	public function sportcenter(){
 		$this->load->model("booking_model");
 		$this->load->model("lapangan_model");
+
 		$this->load->model("member_model");
 		$search["id_member"] = $id_member = $this->uri->segment(3);
 
@@ -276,17 +277,22 @@ class Home extends MY_controller {
 
 		$data["sportcenter"]  = $this->member_model->find_sportcenter($search);
 		$tanggal   =  date("Y-m-d");
+		$_tanggal = strtotime($tanggal);
 
 		$data["tanggal"] = date("Y m d");
+
 		if($this->input->get("tanggal")){
 			$data["tanggal"] = $this->input->get("tanggal");
 			$tanggal = str_replace(" ","-",$data["tanggal"]);
 		}
-		$_tanggal  = strtotime($tanggal." 00:00");
+
+		
+
 		$num_week  = date('w',  $_tanggal);
 		$data["title"] = "Spoercenter";
-		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
+		$lapangan  = $this->lapangan_model->getLapanganByMember($search["id_member"]);
 		// print_r($lapangan);
+
 		$start = $tanggal." 08:00";
 		$end   = $tanggal." 22:00";
 		$data["book"] = false;

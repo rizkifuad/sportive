@@ -22,7 +22,7 @@
 	}
 </style>
 <div id="sportcenter_wrap" class="row">
-<h2>Data sportcenter</h2>
+<h2>Data Sport Center</h2>
 <hr>
 <div class="box-search col-md-3">
 	<form role="form"  method="get" action="<?=base_url("home/cari_sportcenter")?>">
