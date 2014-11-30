@@ -282,7 +282,7 @@ class Booking extends App_controller {
 		$kekurangan = $this->input->post("kekurangan");
 
 		$data = array(
-			'status' => 3 , 
+			'status' => 2 , 
 		);
 
 		$pelunasan = $this->booking_model->pelunasan($data,$id_booking,$id_member,$kekurangan);
