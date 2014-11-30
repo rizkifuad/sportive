@@ -25,7 +25,9 @@
 		<td>
 			<?php foreach ($data["jadwal"] as $key => $sch) : ?>
 				<form role="form" action="<?=base_url("home/booking_user")?>" method="post">
+
 					<input type="hidden" name="tanggal" value="<?=str_replace(" ","-",$tanggal);?>"></input>
+					<input type="hidden" name="id_member" value="<?=$id_member?>"></input>
 					<input type="hidden" name="nama_lapangan" value="<?=$data['nama_lapangan']?>"></input>
 					<button class="btn" name="book" type="submit" value="<?=$sch; ?>"><?php echo $sch; ?></button>
 				</form>

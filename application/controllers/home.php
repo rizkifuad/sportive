@@ -270,7 +270,7 @@ class Home extends MY_controller {
 		$this->load->model("lapangan_model");
 
 		$this->load->model("member_model");
-		$search["id_member"] = $id_member = $this->uri->segment(3);
+		$search["id_member"] = $data['id_member'] =$id_member = $this->uri->segment(3);
 
 		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
 		$this->registerCss('css/datepicker/datepicker35.css');
@@ -365,12 +365,9 @@ class Home extends MY_controller {
 		$data["title"] = "Cek reservasi";
 
 		$this->load->model('member_model');
-		if($this->session->userdata('logged_in')){
-			$session_data = $this->session->userdata('logged_in');
-			$id_member = $session_data->id_member;
-		}
+		$id_member = $this->input->post("id_member");
 		$data["tanggal"] = $this->input->post("tanggal");
-		
+
 		$data["lapangan"] = $this->input->post("nama_lapangan");
 		$data["jam"] = $this->input->post("book");
 		$data['dp'] = $this->member_model->getMemberById("uang_muka",$id_member);
