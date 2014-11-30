@@ -37,7 +37,7 @@
             </div>
 
         </div><!-- /.box-body -->
-
+        <input type="hidden" name="id_member" value="<?=$id_member?>"></input>
         <div class="box-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

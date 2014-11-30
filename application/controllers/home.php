@@ -365,12 +365,12 @@ class Home extends MY_controller {
 		$data["title"] = "Cek reservasi";
 
 		$this->load->model('member_model');
-		$id_member = $this->input->post("id_member");
+		$data['id_member'] = $this->input->post("id_member");
 		$data["tanggal"] = $this->input->post("tanggal");
 
 		$data["lapangan"] = $this->input->post("nama_lapangan");
 		$data["jam"] = $this->input->post("book");
-		$data['dp'] = $this->member_model->getMemberById("uang_muka",$id_member);
+		$data['dp'] = $this->member_model->getMemberById("uang_muka",$data['id_member']);
 
 		$this->registerScript('js/page/booking.js');
 		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
@@ -413,7 +413,7 @@ class Home extends MY_controller {
 		 */
 		$nama_lapangan = $this->input->post("lapangan");
 		$id_lapangan = $this->lapangan_model->getLapanganByNameAndMember($id_member,$nama_lapangan);
-
+		// print_r($id_lapangan);
 		$token = time();
 		$jadwal = $tanggal." ".$jam;
 		
