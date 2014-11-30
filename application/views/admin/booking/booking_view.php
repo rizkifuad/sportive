@@ -15,11 +15,11 @@
             </div>
             <div class="form-group">
                 <label for="tanggal">Tanggal</label>
-                <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Booking" data-date-format="YYYY-MM-DD"required>
+                <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Booking" data-date-format="YYYY-MM-DD"required value="<?=($tanggal)?>">
             </div>
             <div class="form-group bootstrap-timepicker">
                 <label for="tanggal">Jam</label>
-                <input type="text" class="form-control timepicker " id="jam" name="jam" placeholder="Jam Booking" required>
+                <input type="text" class="form-control timepicker " id="jam" name="jam" placeholder="Jam Booking" value="<?=$jam?>" required>
             </div>
             <div class="form-group">
                 <label for="durasi">Durasi Jam</label>
@@ -33,15 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="DP">Lapangan</label>
-                <select class="form-control" id="lapangan" name="lapangan">
-                    <!-- Get list lapangan by member id -->
-                    <?php 
-                        foreach ($lapangan as $key => $value) {
-                            echo ("<option>".$value->nama_lapangan."</option>");
-                        }
-
-                    ?>
-                </select>
+                <input type="text" class="form-control" name="nama_lapangan" id="lapangan" placeholder="Nama Lapangan" value="<?=$nama_lapangan?>">
             </div>
 
         </div><!-- /.box-body -->

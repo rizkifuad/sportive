@@ -13,7 +13,6 @@ define("ACCESS_TOKEN_URL", OAUTH_HOST . "/TemanDev/rest/AccessToken/");
 //  Init the OAuthStore
 $options = array(
 	'consumer_key' => CONSUMER_KEY,
-
 	'consumer_secret' => CONSUMER_SECRET,
 	'server_uri' => OAUTH_HOST,
 	'request_token_uri' => REQUEST_TOKEN_URL,
@@ -40,12 +39,21 @@ request token = ' . $tokenResultParams["token"];
 		var_dump($e);
 		return;
 	}
-    $message = "sportive.com Booking Code : xxxxxxxxxx Jadwal : 01 Januari 2015 - 19.00 Durasi : 2 jam
-        Lokasi : Marina Futsal Lapangan : 1";
+    $message = "sportive.com Booking Code : DELLLL1234 Jadwal : 30/11/2014 - 19.00 Durasi : 2 jam Lokasi : Marina Futsal Lapangan : 1";
 	// make the docs request.
 	$urlAPI = OAUTH_HOST . '/TemanDev/rest/sendSMS/';
 	$opt = array(CURLOPT_HTTPHEADER => array('Content-Type: application/json'));
-	$body = '{"sendSMS":{"pinRequestID":"1","pinDestAddress":"6285735324610","pinMessageBody":asdasd,"pinShortCode":"9147"}}';
+    $api = array(
+        "sendSMS" => array(
+                "pinRequestID" => "1",
+                "pinDestAddress" => "6285735324610",
+                "pinMessageBody" => $message,
+                "pinShortCode" => "9147"
+            )
+        );
+    
+	// $body = '{"sendSMS":{"pinRequestID":"1","pinDestAddress":"6285735324610","pinMessageBody":"'.$message.'","pinShortCode":"9147"}}';
+    $body = json_encode($api);
     echo $body;
 	$request = new OAuthRequester($urlAPI, 'POST', $tokenResultParams, $body);
 	echo 'execute api..
