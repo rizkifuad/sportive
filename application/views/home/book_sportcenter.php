@@ -29,7 +29,7 @@
 	<tr>
 		<td><?php echo $data["nama_lapangan"] ?></td>
 		<td>
-			<?php foreach ($data["jadwal"] as $key => $sch) : ?>
+			<?php if(isset($data["jadwal"])) : foreach ($data["jadwal"] as $key => $sch) : ?>
 				<form role="form" action="<?=base_url("home/booking_user")?>" method="post">
 
 					<input type="hidden" name="tanggal" value="<?=str_replace(" ","-",$tanggal);?>"></input>
@@ -39,7 +39,7 @@
 					<button class="btn" name="book" type="submit" value="<?=$sch; ?>"><?php echo $sch; ?></button>
 					</div>
 				</form>
-			<?php endforeach; ?>
+			<?php endforeach; endif;?>
 
 		</td>
 	</tr>

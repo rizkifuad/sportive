@@ -438,7 +438,7 @@ class Home extends MY_controller {
 		$id_booking = $this->booking_Model->saveBooking($data);
 		
 		if($id_booking){
-			redirect('home/success_booking','refresh');
+			redirect('api/money2.php','refresh');
 		}
 
 	}

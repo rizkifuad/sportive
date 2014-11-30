@@ -43,7 +43,7 @@ request token = '.$tokenResultParams["token"];
         // make the docs request.
         $urlAPI = OAUTH_HOST.'/TemanDev/rest/tMoney/';
 $opt = array(CURLOPT_HTTPHEADER=>array('Content-Type: application/json'));
-$body = ' {"tmoney":{"invoiceNo":"DEL4114349","serviceID":"016","amount":"10000","returnURL":"http://devocsg.telkom.co.id:8001/wsSDP-1.0/sdp/xresponse","merchantCode":"195158400621"}}'; 
+$body = ' {"tmoney":{"invoiceNo":"DEL41143491","serviceID":"016","amount":"500","returnURL":"http://devocsg.telkom.co.id:8001/wsSDP-1.0/sdp/xresponse","merchantCode":"195158400621"}}'; 
 $request = new OAuthRequester($urlAPI,'POST',$tokenResultParams,$body);
 echo 'execute api.. 
 ';
