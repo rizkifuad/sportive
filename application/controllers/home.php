@@ -268,15 +268,27 @@ class Home extends MY_controller {
 	public function sportcenter(){
 		$this->load->model("booking_model");
 		$this->load->model("lapangan_model");
-		$id_member = $this->uri->segment(3);
-		$tanggal   = "2014-11-26";
+		$this->load->model("member_model");
+		$search["id_member"] = $id_member = $this->uri->segment(3);
+
+		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
+		$this->registerCss('css/datepicker/datepicker35.css');
+
+		$data["sportcenter"]  = $this->member_model->find_sportcenter($search);
+		$tanggal   =  date("Y-m-d");
+
+		$data["tanggal"] = date("Y m d");
+		if($this->input->get("tanggal")){
+			$data["tanggal"] = $this->input->get("tanggal");
+			$tanggal = str_replace(" ","-",$data["tanggal"]);
+		}
 		$_tanggal  = strtotime($tanggal." 00:00");
 		$num_week  = date('w',  $_tanggal);
 		$data["title"] = "Spoercenter";
 		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
 		// print_r($lapangan);
-		$start = "2014-11-26 08:00:00";
-		$end   = "2014-11-26 22:00:00";
+		$start = $tanggal." 08:00";
+		$end   = $tanggal." 22:00";
 		$data["book"] = false;
 		if($lapangan):
 
@@ -306,7 +318,7 @@ class Home extends MY_controller {
 
 				if(!in_array($time, $book)){
 					// echo date('H:i:s',$_current)."<br>";
-					array_push($data["book"][$key]["jadwal"], date('H:i:s',$_current));
+					array_push($data["book"][$key]["jadwal"], date('H:i',$_current));
 				}else{
 					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
 					$index = array_search($time, $book);

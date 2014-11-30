@@ -7,11 +7,7 @@
 		margin-bottom: 20px;
 		margin-left: 20px;
 	}
-	#sportcenter_wrap{
-		padding: 10px 30px;
-		background: #fff;
-		border-radius: 10px;
-	}
+	
 	.white{
 		background: #fff;
 		color:#fff;

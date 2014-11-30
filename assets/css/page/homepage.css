@@ -153,3 +153,11 @@ a:hover{
 td.hd{
 	background: #ededed;
 }
+#sportcenter_wrap{
+	padding: 10px 30px;
+	background: #fff;
+	border-radius: 10px;
+	min-height: 200px;
+	position: relative;
+	margin-bottom: 23px;
+}
