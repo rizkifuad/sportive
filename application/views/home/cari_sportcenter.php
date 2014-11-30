@@ -93,7 +93,7 @@
 <div id="item_sportcenter" class="row" >
 	<h4><a href="<?php echo base_url("home/sportcenter/".$sport->id_member) ?>"><?php echo $sport->nama_tempat ?></a></h4>
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<img src="<?php echo U::asset_url("img/home/img-lapangan.jpg"); ?>" class="img-sport" width="150">
 		</div>
 		<div class="col-md-8 detail_lapangan">

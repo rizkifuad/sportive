@@ -11,6 +11,7 @@
 
 </form>
 </div>
+</div>
 <?php if($book) :  ?>
 <table class="table table-bordered">
 	<tr>
@@ -35,8 +36,9 @@
 	<?php endforeach; ?>
 </table>
 *Klik pada jam yang diinginkan untuk melakukan booking
-<?php else: echo "Data tidak ditemukan"; endif;?>
 </div>
+</div>
+<?php else: echo "<div class='row'><p align='center'>Data tidak ditemukan</div>"; endif;?>
 
 <script>
 	$(document).ready(function(){
