@@ -268,16 +268,34 @@ class Home extends MY_controller {
 	public function sportcenter(){
 		$this->load->model("booking_model");
 		$this->load->model("lapangan_model");
-		$id_member = $this->uri->segment(3);
-		$tanggal   = "2014-11-30";
-		$_tanggal  = strtotime($tanggal." 00:00");
+
+		$this->load->model("member_model");
+		$search["id_member"] = $id_member = $this->uri->segment(3);
+
+		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
+		$this->registerCss('css/datepicker/datepicker35.css');
+
+		$data["sportcenter"]  = $this->member_model->find_sportcenter($search);
+		$tanggal   =  date("Y-m-d");
+		$_tanggal = strtotime($tanggal);
+
+		$data["tanggal"] = date("Y m d");
+
+		if($this->input->get("tanggal")){
+			$data["tanggal"] = $this->input->get("tanggal");
+			$tanggal = str_replace(" ","-",$data["tanggal"]);
+		}
+
+		
+
 		$num_week  = date('w',  $_tanggal);
 		$data["title"] = "Spoercenter";
-		$lapangan  = $this->lapangan_model->getLapanganByMember($id_member);
+		$lapangan  = $this->lapangan_model->getLapanganByMember($search["id_member"]);
 		// print_r($lapangan);
-		$start = "2014-11-30 08:00:00";
-		$end   = "2014-11-30 22:00:00";
 
+		$start = $tanggal." 08:00";
+		$end   = $tanggal." 22:00";
+		$data["book"] = false;
 		if($lapangan):
 
 		$data["book"] = array();
@@ -306,7 +324,7 @@ class Home extends MY_controller {
 
 				if(!in_array($time, $book)){
 					// echo date('H:i:s',$_current)."<br>";
-					array_push($data["book"][$key]["jadwal"], date('H:i:s',$_current));
+					array_push($data["book"][$key]["jadwal"], date('H:i',$_current));
 				}else{
 					// echo "<strong>".date('H:i:s',$_current)."</strong><br>";
 					$index = array_search($time, $book);
@@ -341,6 +359,95 @@ class Home extends MY_controller {
 		}
 		$content = $this->load->view("home/cek_booking",$data,true);
 		$this->render($content);
+	}	
+
+	public function booking_user(){
+		$data["title"] = "Cek reservasi";
+
+		$this->load->model('member_model');
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+		$data["tanggal"] = $this->input->post("tanggal");
+		
+		$data["lapangan"] = $this->input->post("nama_lapangan");
+		$data["jam"] = $this->input->post("book");
+		$data['dp'] = $this->member_model->getMemberById("uang_muka",$id_member);
+
+		$this->registerScript('js/page/booking.js');
+		$this->registerScript('js/plugins/datepicker/bootstrap-datepicker.js');
+		$this->registerScript('js/plugins/timepicker/bootstrap-timepicker.min.js');
+
+		$this->registerCss('css/datepicker/datepicker35.css');
+		$this->registerCss('css/timepicker/bootstrap-timepicker.min.css');
+
+		$content = $this->load->view("home/booking_user",$data,true);
+		$this->render($content);
+	}
+
+	public function save_booking(){
+		$this->load->model('booking_Model');
+		$this->load->model('lapangan_model');
+		$this->load->model('member_model');
+
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$id_member = $session_data->id_member;
+		}
+
+		$nama = $this->input->post("nama");
+		$telepon = $this->input->post("telepon");
+		$tanggal = $this->input->post("tanggal");
+
+		$jam = $this->input->post("jam");
+		$durasi = $this->input->post("durasi");
+		$dp = $this->input->post("dp");
+
+		/**
+		 * Check uang muka lunas atau tidak
+		 */
+		$harga = $this->member_model->getMemberById("harga_per_jam",$id_member);
+		if($dp == $harga['harga_per_jam']*$durasi){
+			$status = 2;
+		}
+		else{
+			$status = 1;
+		}
+
+		/**
+		 * Get list lapangan
+		 */
+		$nama_lapangan = $this->input->post("lapangan");
+		$id_lapangan = $this->lapangan_model->getLapanganByNameAndMember($id_member,$nama_lapangan);
+
+		$token = time();
+		$jadwal = $tanggal." ".$jam;
+		
+
+		$data = array(
+			'nama' =>$nama ,
+			'telp' =>$telepon ,
+			'token' => $token,
+			'type' => 0,
+			'jadwal' =>$jadwal ,
+			'durasi' =>$durasi ,
+			'jml_uang' =>$dp ,
+			'status' =>$status,
+			'id_lapangan' =>$id_lapangan[0]->id_lapangan ,
+			'id_member'=>$id_member
+
+		);
+		$id_booking = $this->booking_Model->saveBooking($data);
+		
+		if($id_booking){
+			redirect('home/success_booking','refresh');
+		}
+
+	}
+
+	public function success_booking(){
+		echo "success";
 	}	
 
 }

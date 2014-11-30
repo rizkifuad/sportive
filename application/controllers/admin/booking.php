@@ -162,7 +162,6 @@ class Booking extends App_controller {
 		$data['tanggal'] = $this->input->post('tanggal');
 		$data["nama_lapangan"] = $this->input->post('lapangan');
 		$data["jam"] = $this->input->post('book');
-		$data['lapangan'] = $this->lapangan_model->getLapanganByMember($id_member);
 		$data['dp'] = $this->member_model->getMemberById("uang_muka",$id_member);
 
 		$this->registerScript('js/page/booking.js');
