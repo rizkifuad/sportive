@@ -1,4 +1,5 @@
 <?php 
+error_reporting(0);
 include_once "./library/OAuthStore.php";
 include_once "./library/OAuthRequester.php";
 
@@ -24,12 +25,10 @@ try
         //  STEP 1:  If we do not have an OAuth token yet, go get one
         $getAuthTokenParams = null;
         // get a request token
-        echo 'fetch request token..';
+
         $tokenResultParams = OAuthRequester::requestRequestToken(CONSUMER_KEY, 0, $getAuthTokenParams);
-	echo '
-request token = '.$tokenResultParams["token"];
-        echo '
-';
+	// echo 'request token = '.$tokenResultParams["token"];
+
         //  STEP 2:  Get an access token
         try {
             OAuthRequester::requestAccessToken(CONSUMER_KEY, $tokenResultParams["token"], 0, 'POST');
@@ -45,8 +44,7 @@ request token = '.$tokenResultParams["token"];
 $opt = array(CURLOPT_HTTPHEADER=>array('Content-Type: application/json'));
 $body = ' {"tmoney":{"invoiceNo":"DEL4114349","serviceID":"016","amount":"10000","returnURL":"http://devocsg.telkom.co.id:8001/wsSDP-1.0/sdp/xresponse","merchantCode":"195158400621"}}'; 
 $request = new OAuthRequester($urlAPI,'POST',$tokenResultParams,$body);
-echo 'execute api.. 
-';
+// echo 'execute api.. ';
 $result = $request->doRequest(0,$opt);
 header('Location: '.$result['headers']['location']);
 } catch(OAuthException2 $e) { 	echo "OAuthException:  " . $e->getMessage();
