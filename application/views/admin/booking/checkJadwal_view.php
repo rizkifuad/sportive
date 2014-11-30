@@ -26,11 +26,12 @@
 		<td><?php echo $data["nama_lapangan"] ?></td>
 		<td>
 			<?php foreach ($data["jadwal"] as $key => $sch) : ?>
+
 				<form role="form" class="form-inline" action="<?=base_url("admin/booking/booking_offline")?>" method="post">
 					<input type="hidden" name="tanggal" value="<?=$tanggal?>"></input>
 					<input type="hidden" name="lapangan" value="<?=$data['nama_lapangan']?>"></input>
                     <div class="form-group jam_book">
-					<button class="btn" name="book" type="submit" value="<?=$sch; ?>"><?php echo $sch; ?></button>
+						<button class="btn" name="book" type="submit" value="<?=$sch; ?>"><?php echo $sch; ?></button>
                     </div>
 				</form>
 			<?php endforeach; ?>

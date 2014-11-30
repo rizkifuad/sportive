@@ -1,3 +1,9 @@
+<style>
+	.jam_book{
+		float: left;
+		padding: 10px;
+	}
+</style>
 <div id="sportcenter_wrap" class="row">
 <h2>Reservasi - <?php echo $sportcenter[0]->nama_tempat." - ".str_replace(" ","-",$tanggal); ?> </h2><br>
 <div class="row">
@@ -24,7 +30,15 @@
 		<td><?php echo $data["nama_lapangan"] ?></td>
 		<td>
 			<?php foreach ($data["jadwal"] as $key => $sch) : ?>
-				<button class="btn"><?php echo $sch; ?></button>
+				<form role="form" action="<?=base_url("home/booking_user")?>" method="post">
+
+					<input type="hidden" name="tanggal" value="<?=str_replace(" ","-",$tanggal);?>"></input>
+					<input type="hidden" name="id_member" value="<?=$id_member?>"></input>
+					<input type="hidden" name="nama_lapangan" value="<?=$data['nama_lapangan']?>"></input>
+					<div class="form-group jam_book">
+					<button class="btn" name="book" type="submit" value="<?=$sch; ?>"><?php echo $sch; ?></button>
+					</div>
+				</form>
 			<?php endforeach; ?>
 
 		</td>
