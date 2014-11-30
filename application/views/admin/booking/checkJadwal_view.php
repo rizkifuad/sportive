@@ -26,7 +26,11 @@
 		<td><?php echo $data["nama_lapangan"] ?></td>
 		<td>
 			<?php foreach ($data["jadwal"] as $key => $sch) : ?>
-				<button class="btn"><?php echo $sch; ?></button>
+				<form role="form" action="<?=base_url("admin/booking/booking_offline")?>" method="post">
+					<input type="hidden" name="tanggal" value="<?=$tanggal?>"></input>
+					<input type="hidden" name="lapangan" value="<?=$data['nama_lapangan']?>"></input>
+					<button class="btn" name="book" type="submit" value="<?=$sch; ?>"><?php echo $sch; ?></button>
+				</form>
 			<?php endforeach; ?>
 
 		</td>
