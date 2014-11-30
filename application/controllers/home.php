@@ -387,11 +387,7 @@ class Home extends MY_controller {
 		$this->load->model('booking_Model');
 		$this->load->model('lapangan_model');
 		$this->load->model('member_model');
-
-		if($this->session->userdata('logged_in')){
-			$session_data = $this->session->userdata('logged_in');
-			$id_member = $session_data->id_member;
-		}
+		$id_member = $this->input->post("id_member");
 
 		$nama = $this->input->post("nama");
 		$telepon = $this->input->post("telepon");
